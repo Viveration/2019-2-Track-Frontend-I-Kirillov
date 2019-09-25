@@ -21,4 +21,3 @@ export default function convertBytesToHuman(bytes) {
   bytes = String(numberOfUnits) + ' ' + units[typeOfUnits];
   return bytes;
 }
-console.log(convertBytesToHuman(1024));
