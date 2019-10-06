@@ -1,34 +1,56 @@
 const template = document.createElement('template');
 template.innerHTML = `
     <style>
-        :host {
-        display: block;
-        font-family: sans-serif;
+        .main {
+            display: flex;
+            padding-left: 15px;
+            padding-right: 10px;
+            padding-top: 5px;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+            background-color: rgba(142, 36, 170, 0.15);
+            border-radius: 20px;
+            margin-bottom: 20px;
         }
         .bubble {
-            color: #876ED7;
-            border: 1px solid black; 
-            background-color: #3914AF; 
-            padding: 10px;
+            max-width: calc(100%-2px)
+            flex-basis: content;
+            color: rgba(0, 0, 0, 0.87);
+            font-family: modern;
+            text-align: left;
+            line-break: normal;
+            word-wrap: break-word;
+            word-break: break-all;
+            font-size: 20px;
+            min-height: 20px;
         }
         .date {
-            background-color: #7109AA;
-            color: yellow;
-            border: 1px solid black; 
-            padding: 10px;
+            color: rgba(0, 0, 0, 0.87);
+            flex-basis: content;
+            font-family: century gothic;
+            text-align: right; 
+            font-size: 15px;
+            height: 15px;
+            margin-bottom: 5px;
+            margin-right: 20px;
         }
         .name {
-            background-color: #FFD300
-            color: black;
-            border: 1px solid black; 
-            padding: 10px;
+            margin-left: 20px
+            width: 100px;
+            flex-basis: content;
+            font-family: consolas;
+            text-align: left;
+            font-size: 17px;
+            color: rgba(0, 0, 0, 0.87);
+            margin-bottom: 5px;
+            min-height: 15px;
         }
     </style>
-        <div>
-            <div class = "name">DefaultName</div>
+        <div class = "main">
+            <div class = "name"></div>
             <div class = "bubble"></div>
             <div class = "date"></div>
-        <div>
+        </div>
 `;
 
 class MessageBubble extends HTMLElement {
