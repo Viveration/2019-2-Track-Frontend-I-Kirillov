@@ -8,25 +8,29 @@ template.innerHTML = `
             align-items: flex-end;
 
         }
-        form {
+        .chat {
             margin-top: 50px;
-            max-height: 100%;
+            width: 100%;
+            height: 600px;
             overflow-y: scroll;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            flex-flow: column nowrap;
+
+        }
+        form {
+            max-height: 100%;
             width: 100%;
             max-width: 100%;
             justify-content: flex-end;
             display: flex;
             align-items: flex-end;
-            margin-bottom: 40px;
             flex-flow: column nowrap;
 
         }
         form-input {
-            position: fixed;
-            bottom: 0px;
-            left: 20%;
-            right: 20%;
-            width: 60%;
+            width: 100%;
         }
         input[type=submit] {
             visibility: collapse;
@@ -34,6 +38,7 @@ template.innerHTML = `
 
     </style>
         <form>
+            <div class="chat"></div>
             <form-input name="message-text" placeholder="Сообщение..."></form-input>
         </form>
 `;
@@ -49,6 +54,7 @@ class MessageForm extends HTMLElement {
         this.$form.addEventListener('submit', this._onSubmit.bind(this));
         this.$form.addEventListener('keypress', this._onKeyPress.bind(this));
         this.$button.addEventListener('onClick', this._onSubmit.bind(this));
+        this.$chat = this._shadowRoot.querySelector('.chat');
     }
 
     _onSubmit (event) {
@@ -64,7 +70,7 @@ class MessageForm extends HTMLElement {
         }
         newMessage.$date.innerText = Hour+":"+Minutes+":"+Seconds;
         newMessage.$name.innerText = "DefaultName";
-        this.$form.insertBefore(newMessage, this.$input);
+        this.$chat.appendChild(newMessage);
     }
 
     _onKeyPress (event) {
