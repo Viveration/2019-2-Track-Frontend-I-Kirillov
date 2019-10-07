@@ -9,20 +9,17 @@ template.innerHTML = `
 
         }
         .chat {
-            margin-top: 50px;
             width: 100%;
-            height: 600px;
-            overflow-y: scroll;
+            height: 100%;
+            overflow-y: auto;
             display: flex;
             align-items: flex-end;
-            justify-content: flex-end;
-            flex-flow: column nowrap;
+            flex-flow: column-reverse nowrap;
 
         }
         form {
-            max-height: 100%;
+            max-height: calc(100% - 50px);
             width: 100%;
-            max-width: 100%;
             justify-content: flex-end;
             display: flex;
             align-items: flex-end;
@@ -35,12 +32,16 @@ template.innerHTML = `
         input[type=submit] {
             visibility: collapse;
         }
-
+        top-panel {
+            width: 100%;
+            height: 50px;
+        }
     </style>
         <form>
             <div class="chat"></div>
             <form-input name="message-text" placeholder="Сообщение..."></form-input>
         </form>
+        <top-panel></top-panel>
 `;
 
 class MessageForm extends HTMLElement {
@@ -70,7 +71,7 @@ class MessageForm extends HTMLElement {
         }
         newMessage.$date.innerText = Hour+":"+Minutes+":"+Seconds;
         newMessage.$name.innerText = "DefaultName";
-        this.$chat.appendChild(newMessage);
+        this.$chat.insertBefore(newMessage, this._shadowRoot.querySelector('message-bubble'));
     }
 
     _onKeyPress (event) {

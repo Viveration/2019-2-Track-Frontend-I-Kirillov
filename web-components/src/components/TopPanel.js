@@ -6,11 +6,8 @@ template.innerHTML = `
             flex-flow: row nowrap;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            right: 20%;
-            left: 20%;
             height: 50px;
-            width: 60%;
+            width: 100%;
             min-width: 200px;
             background-color: #8E24AA;
         }
@@ -22,12 +19,9 @@ template.innerHTML = `
             height: 40px;
             width: 40px;
         }
-        .fas fa-align-justify {
-            width: 40px;
-            height: 40px;
-            color: rgba(0, 0, 0, 0.87);
-        }
-        .fas fa-cog {
+
+
+        .fas{
             width: 40px;
             height: 40px;
             color: rgba(0, 0, 0, 0.87);
