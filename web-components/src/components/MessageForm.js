@@ -33,7 +33,11 @@ template.innerHTML = `
             visibility: collapse;
         }
         top-panel {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
             width: 100%;
+            min-width: 500px;
             height: 50px;
         }
     </style>
@@ -64,13 +68,11 @@ class MessageForm extends HTMLElement {
         let Data = new Date();
         let Hour = Data.getHours();
         let Minutes = Data.getMinutes();
-        let Seconds = Data.getSeconds();
         newMessage.$text.innerText = this.$input.value;
         if (newMessage.$text.innerText == '') {
             return;
         }
-        newMessage.$date.innerText = Hour+":"+Minutes+":"+Seconds;
-        newMessage.$name.innerText = "DefaultName";
+        newMessage.$date.innerText = Hour+":"+Minutes;
         this.$chat.insertBefore(newMessage, this._shadowRoot.querySelector('message-bubble'));
     }
 
