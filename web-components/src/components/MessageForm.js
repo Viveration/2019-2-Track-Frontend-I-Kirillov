@@ -67,7 +67,7 @@ class MessageForm extends HTMLElement {
         let newMes = document.createElement("message-bubble");
         newMes.$text.innerText = text;
         newMes.$date.innerText = date;
-        this.$chat.insertBefore(newMes, document.querySelector('message-bubble'));
+        this.$chat.insertBefore(newMes, this._shadowRoot.querySelector('message-bubble'));
     }
     _historyInit() {
         let storage;
