@@ -60,6 +60,7 @@ class MessageForm extends HTMLElement {
         this.$form.addEventListener('keypress', this._onKeyPress.bind(this));
         this.$button.addEventListener('onClick', this._onSubmit.bind(this));
         this.$chat = this._shadowRoot.querySelector('.chat');
+        this._historyInit();
     }
 
     _printLocalMessage(date, text) {
@@ -102,7 +103,6 @@ class MessageForm extends HTMLElement {
     }
 
     _onSubmit (event) {
-        this._historyInit();
         event.preventDefault();
         let newMessage = document.createElement('message-bubble');
         // console.log(newMessage);
