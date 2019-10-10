@@ -53,15 +53,3 @@ class MessageBubble extends HTMLElement {
 }
 
 customElements.define('message-bubble', MessageBubble);
-
- /*       .name {
-            margin-left: 20px
-            width: 100px;
-            flex-basis: content;
-            font-family: consolas;
-            text-align: left;
-            font-size: 17px;
-            color: rgba(0, 0, 0, 0.87);
-            margin-bottom: 5px;
-            min-height: 15px;
-        }*/

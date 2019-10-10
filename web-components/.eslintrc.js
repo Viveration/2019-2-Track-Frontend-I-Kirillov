@@ -2,6 +2,8 @@ module.exports = {
   "extends": "airbnb-base",
   "extends": "eslint:recommended",
   "rules": {
+      "no-undef": 0,
+      "no-lonely-if": 0,
   		"no-underscore-dangle": 0,
   		"prefer-const": 0,
   		"no-plusplus": 0,

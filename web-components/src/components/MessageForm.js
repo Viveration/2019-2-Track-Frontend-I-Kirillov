@@ -70,12 +70,12 @@ class MessageForm extends HTMLElement {
         this.$chat.insertBefore(newMes, document.querySelector('message-bubble'));
     }
     _historyInit() {
-        let storage
+        let storage;
         if ((storage = localStorage.getItem('message')) == null) {
             localStorage.setItem('message', '');
             storage = [];
         } else {
-            if (storage != '') {
+            if (storage !== '') {
                 storage = JSON.parse(storage);
             }
         }
@@ -90,14 +90,13 @@ class MessageForm extends HTMLElement {
             localStorage.setItem('message', '');
             storage = [];
         } else {
-            if (storage != '') {
+            if (storage !== '') {
                 storage = JSON.parse(storage);
             } else {
                 storage = [];
             }
         }
-        console.log(storage);
-        let Message = [name, date, text]
+        let Message = [name, date, text];
         storage.push(JSON.stringify(Message));
         localStorage.setItem('message', JSON.stringify(storage));
     }
@@ -105,7 +104,6 @@ class MessageForm extends HTMLElement {
     _onSubmit (event) {
         event.preventDefault();
         let newMessage = document.createElement('message-bubble');
-        // console.log(newMessage);
         let Data = new Date();
         let Hour = Data.getHours();
         let Minutes = Data.getMinutes();

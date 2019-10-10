@@ -135,8 +135,8 @@ class TopPanel extends HTMLElement {
         this._shadowRoot.appendChild(template.content.cloneNode(true));
         this.$menuButton = this.shadowRoot.querySelector('.menuButton');
         this.$contacts = this._shadowRoot.querySelector('.contacts');
-        //this.$menuButton.addEventListener('click', this._onMenuClick.bind(this));
-        //this.$contacts.addEventListener('click', this._onContactsClick.bind(this));
+        // this.$menuButton.addEventListener('click', this._onMenuClick.bind(this));
+        // this.$contacts.addEventListener('click', this._onContactsClick.bind(this));
     }
 
 }
