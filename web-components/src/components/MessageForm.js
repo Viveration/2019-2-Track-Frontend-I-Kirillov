@@ -62,23 +62,42 @@ class MessageForm extends HTMLElement {
         this.$chat = this._shadowRoot.querySelector('.chat');
     }
 
+    _printLocalMessage() {
+        for(let i = 0; i < localStorage.length; i++) {
+            let message = JSON.parse(localStorage.getItem(i));
+            let newMes = document.createElement('message-bubble');
+            // console.log(newMes);
+            newMes.$text.innerText = message[2];
+            newMes.$date.innerText = message[1];
+            this.$chat.insertBefore(newMes, document.querySelector('message-bubble'));
+        }
+    }
+
+    _addLocalMessage(name, date, text) {
+        let index = localStorage.length;
+        let Message = [name, date, text];
+        localStorage.setItem(index, JSON.stringify(Message));
+    }
+
     _onSubmit (event) {
+        this._printLocalMessage();
         event.preventDefault();
         let newMessage = document.createElement('message-bubble');
+        // console.log(newMessage);
         let Data = new Date();
         let Hour = Data.getHours();
         let Minutes = Data.getMinutes();
         newMessage.$text.innerText = this.$input.value;
-        if (newMessage.$text.innerText == '') {
+        if (newMessage.$text.innerText === '') {
             return;
         }
         newMessage.$date.innerText = Hour+":"+Minutes;
+        this._addLocalMessage("Всеволод Истомин", newMessage.$date.innerText, newMessage.$text.innerText);
         this.$chat.insertBefore(newMessage, this._shadowRoot.querySelector('message-bubble'));
     }
-
     _onKeyPress (event) {
-        if (event.keyCode == 13) {
-                this.$form.dispatchEvent(new Event('submit'));
+        if (event.keyCode === 13) {
+            this.$form.dispatchEvent(new Event('submit'));
         }
     }
 }
