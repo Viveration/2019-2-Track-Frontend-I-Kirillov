@@ -49,7 +49,7 @@ template.innerHTML = `
 `;
 
 class MessageForm extends HTMLElement {
-    constructor () {
+    constructor() {
         super();
         this._shadowRoot = this.attachShadow({ mode: 'open' });
         this._shadowRoot.appendChild(template.content.cloneNode(true));
@@ -62,25 +62,47 @@ class MessageForm extends HTMLElement {
         this.$chat = this._shadowRoot.querySelector('.chat');
     }
 
-    _printLocalMessage() {
-        for(let i = 0; i < localStorage.length; i++) {
-            let message = JSON.parse(localStorage.getItem(i));
-            let newMes = document.createElement('message-bubble');
-            // console.log(newMes);
-            newMes.$text.innerText = message[2];
-            newMes.$date.innerText = message[1];
-            this.$chat.insertBefore(newMes, document.querySelector('message-bubble'));
+    _printLocalMessage(date, text) {
+        let newMes = document.createElement("message-bubble");
+        newMes.$text.innerText = text;
+        newMes.$date.innerText = date;
+        this.$chat.insertBefore(newMes, document.querySelector('message-bubble'));
+    }
+    _historyInit() {
+        let storage
+        if ((storage = localStorage.getItem('message')) == null) {
+            localStorage.setItem('message', '');
+            storage = [];
+        } else {
+            if (storage != '') {
+                storage = JSON.parse(storage);
+            }
+        }
+        for (let i = 0; i < storage.length; i++) {
+            let mess = JSON.parse(storage[i]);
+            this._printLocalMessage(mess[1], mess[2]);
         }
     }
 
     _addLocalMessage(name, date, text) {
-        let index = localStorage.length;
-        let Message = [name, date, text];
-        localStorage.setItem(index, JSON.stringify(Message));
+        if ((storage = localStorage.getItem('message')) == null) {
+            localStorage.setItem('message', '');
+            storage = [];
+        } else {
+            if (storage != '') {
+                storage = JSON.parse(storage);
+            } else {
+                storage = [];
+            }
+        }
+        console.log(storage);
+        let Message = [name, date, text]
+        storage.push(JSON.stringify(Message));
+        localStorage.setItem('message', JSON.stringify(storage));
     }
 
     _onSubmit (event) {
-        this._printLocalMessage();
+        this._historyInit();
         event.preventDefault();
         let newMessage = document.createElement('message-bubble');
         // console.log(newMessage);
