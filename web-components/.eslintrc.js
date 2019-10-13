@@ -3,6 +3,7 @@ module.exports = {
   "extends": "eslint:recommended",
   "rules": {
       "no-undef": 0,
+      "no-unused-vars": 0,
       "no-lonely-if": 0,
   		"no-underscore-dangle": 0,
   		"prefer-const": 0,

@@ -19,10 +19,11 @@ template.innerHTML = `
             align-items: center;
         }
         .logo {
+            font-weight: 700;
             height: 30px;
             margin-left: 15px;
             margin-right: auto;
-            width: 125px;
+            flex-basis: content;
             overflow: hidden;
             color: #FFFFFF;
             white-space: nowrap;
@@ -42,7 +43,8 @@ template.innerHTML = `
             width: 100%;
             min-width: 150px;
             flex-flow: column nowrap;
-            justify-content: flex-start;
+            overflow-y: auto;
+            overflow-x: hidden;
             align-items: flex-start;
         }
         chat-bubble {
@@ -80,9 +82,6 @@ class ContactsPanel extends HTMLElement {
         this.$search = this.$head.querySelector('search-input');
     }
 
-    _addChatFromHistory(){
-
-    }
 
 }      
 

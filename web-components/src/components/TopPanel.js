@@ -12,7 +12,7 @@ template.innerHTML = `
             background-color: #8E24AA;
         }
         .profileInformation {
-            overflow: hidden;
+            overflow: contactsHidden;
             margin-right: auto;
             align-items: flex-start;
             min-width: 100px;
@@ -21,7 +21,7 @@ template.innerHTML = `
         }
         .profileName {
             width: 100%;
-            overflow: hidden;
+            overflow: contactsHidden;
             flex-basis: content;
             color: #FFFFFF;
             white-space: nowrap;
@@ -31,7 +31,7 @@ template.innerHTML = `
             height: 60%;
         }
         .profileActivity {
-            overflow: hidden;
+            overflow: contactsHidden;
             white-space: nowrap;
             width: 100%;
             height: 40%;
@@ -43,12 +43,13 @@ template.innerHTML = `
             min-height: 15px;
         }
         .profileAvatar {
+            background-repeat: no-repeat;
             margin-left: 20px;
             height: 46px;
             width: 46px;
             border-radius: 20px;
-            background-image: url('src/0.png');
-            background-size: 100% auto;
+            background-image: url('src/2.png');
+            background-size: cover;
         }
         .contacts {
             margin-left: 10px;
@@ -81,8 +82,8 @@ template.innerHTML = `
         </div>
         <div class = "profileAvatar"></div>
         <div class = "profileInformation">
-            <div hidden class="uid">0</div>
-            <div class = "profileName">Всеволод Истомин</div>
+            <div hidden class="uid">2</div>
+            <div class = "profileName">Супер Сус</div>
             <div class = "profileActivity">Был в сети 228 минут назад</div>
         </div>
         <div class = "menuButton">
@@ -136,13 +137,15 @@ class TopPanel extends HTMLElement {
         this._shadowRoot.appendChild(template.content.cloneNode(true));
         this.$menuButton = this.shadowRoot.querySelector('.menuButton');
         this.$contacts = this._shadowRoot.querySelector('.contacts');
+        this.$uid = this._shadowRoot.querySelector('.uid');
         // this.$menuButton.addEventListener('click', this._onMenuClick.bind(this));
         this.$contacts.addEventListener('click', this._onContactsClick.bind(this));
-        this.hidden = true;
+        this.$contactsHidden = true;
         this.$name = this._shadowRoot.querySelector('.profileName');
+        this.$avatar = this._shadowRoot.querySelector('.profileAvatar');
     }
     _onContactsClick(event) {
-        if (this.hidden === true) {
+        if (this.$contactsHidden === true) {
             let menuElement = document.querySelector('.contact');
             let contactMenu = document.createElement('contacts-panel');
             menuElement.appendChild(contactMenu);
@@ -160,20 +163,18 @@ class TopPanel extends HTMLElement {
                 chatBubble.$avatar.style.backgroundImage = "url(src/" + nameUid[1] + ".png)";
                 chatBubble.$name.innerText = nameUid[0];
                 messages = JSON.parse(localStorage.getItem(String(nameUid[1])));
+                chatBubble.$uid.innerText = nameUid[1];
                 lastMessage = messages[messages.length-1];
                 chatBubble.$text.innerText = JSON.parse(lastMessage)[1];
                 chatBubble.$date.innerText = JSON.parse(lastMessage)[0];
                 contactMenu.$container.appendChild(chatBubble);
             }
-            this.hidden = false;
+            this.$contactsHidden = false;
         } else {
             let menuElement = document.querySelector('.contact');
             menuElement.querySelector('contacts-panel').remove();
-            this.hidden = true;
+            this.$contactsHidden = true;
         }
-        // if (this.hidden === true) {
-
-        // }
     }
 }
 
