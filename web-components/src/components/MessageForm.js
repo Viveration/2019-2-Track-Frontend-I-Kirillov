@@ -60,7 +60,8 @@ class MessageForm extends HTMLElement {
         this.$form.addEventListener('keypress', this._onKeyPress.bind(this));
         this.$button.addEventListener('onClick', this._onSubmit.bind(this));
         this.$chat = this._shadowRoot.querySelector('.chat');
-        this._historyInit();
+        this.$panel = this._shadowRoot.querySelector('top-panel');
+        this._historyInit(0);
     }
 
     _printLocalMessage(date, text) {
@@ -69,10 +70,10 @@ class MessageForm extends HTMLElement {
         newMes.$date.innerText = date;
         this.$chat.insertBefore(newMes, this._shadowRoot.querySelector('message-bubble'));
     }
-    _historyInit() {
+    _historyInit(uid) {
         let storage;
-        if ((storage = localStorage.getItem('message')) == null) {
-            localStorage.setItem('message', '');
+        if ((storage = localStorage.getItem(String(uid))) == null) {
+            localStorage.setItem(String(uid), '');
             storage = [];
         } else {
             if (storage !== '') {
@@ -81,13 +82,45 @@ class MessageForm extends HTMLElement {
         }
         for (let i = 0; i < storage.length; i++) {
             let mess = JSON.parse(storage[i]);
-            this._printLocalMessage(mess[1], mess[2]);
+            this._printLocalMessage(mess[0], mess[1]);
         }
     }
 
     _addLocalMessage(name, date, text) {
-        if ((storage = localStorage.getItem('message')) == null) {
-            localStorage.setItem('message', '');
+        let uid = null;
+        let nameUid = [];
+        if ((nameArray = localStorage.getItem('nameArray')) == null) {
+            localStorage.setItem('nameArray', '');
+            nameArray = [];
+            uid = 0;
+            nameUid = [name, uid];
+            nameArray.push(JSON.stringify(nameUid));
+        } else {
+            if (nameArray !== '') {
+                nameArray = JSON.parse(nameArray);
+                for (let i = 0; i < nameArray.length; i++) {
+                    if (name === JSON.parse(nameArray[i])[0]) {
+                        uid = JSON.parse(nameArray[i])[1];
+                        break;
+                    }
+                    if (uid === null) {
+                        uid = nameArray.length;
+                        nameUid = [name, uid];
+                        nameArray.push(JSON.stringify(nameUid));
+                    }
+                }
+
+            } else {
+                nameArray = [];
+                uid = 0;
+                nameUid = [name, uid];
+                nameArray.push(JSON.stringify(nameUid));
+            }
+        }
+        
+
+        if ((storage = localStorage.getItem(String(uid))) == null) {
+            localStorage.setItem(String(uid), '');
             storage = [];
         } else {
             if (storage !== '') {
@@ -96,9 +129,12 @@ class MessageForm extends HTMLElement {
                 storage = [];
             }
         }
-        let Message = [name, date, text];
+
+        console.log(name);
+        let Message = [date, text];
         storage.push(JSON.stringify(Message));
-        localStorage.setItem('message', JSON.stringify(storage));
+        localStorage.setItem('nameArray', JSON.stringify(nameArray));
+        localStorage.setItem(String(uid), JSON.stringify(storage));
     }
 
     _onSubmit (event) {
@@ -112,7 +148,8 @@ class MessageForm extends HTMLElement {
             return;
         }
         newMessage.$date.innerText = Hour+":"+Minutes;
-        this._addLocalMessage("Всеволод Истомин", newMessage.$date.innerText, newMessage.$text.innerText);
+        let name = this.$panel.$name.innerText;
+        this._addLocalMessage(name, newMessage.$date.innerText, newMessage.$text.innerText);
         this.$chat.insertBefore(newMessage, this._shadowRoot.querySelector('message-bubble'));
     }
     _onKeyPress (event) {

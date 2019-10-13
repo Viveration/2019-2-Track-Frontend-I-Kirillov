@@ -47,7 +47,7 @@ template.innerHTML = `
             height: 46px;
             width: 46px;
             border-radius: 20px;
-            background-image: url('src/Screenshot_1.png');
+            background-image: url('src/0.png');
             background-size: 100% auto;
         }
         .contacts {
@@ -81,6 +81,7 @@ template.innerHTML = `
         </div>
         <div class = "profileAvatar"></div>
         <div class = "profileInformation">
+            <div hidden class="uid">0</div>
             <div class = "profileName">Всеволод Истомин</div>
             <div class = "profileActivity">Был в сети 228 минут назад</div>
         </div>
@@ -136,9 +137,44 @@ class TopPanel extends HTMLElement {
         this.$menuButton = this.shadowRoot.querySelector('.menuButton');
         this.$contacts = this._shadowRoot.querySelector('.contacts');
         // this.$menuButton.addEventListener('click', this._onMenuClick.bind(this));
-        // this.$contacts.addEventListener('click', this._onContactsClick.bind(this));
+        this.$contacts.addEventListener('click', this._onContactsClick.bind(this));
+        this.hidden = true;
+        this.$name = this._shadowRoot.querySelector('.profileName');
     }
+    _onContactsClick(event) {
+        if (this.hidden === true) {
+            let menuElement = document.querySelector('.contact');
+            let contactMenu = document.createElement('contacts-panel');
+            menuElement.appendChild(contactMenu);
+            let nameArray = localStorage.getItem('nameArray');
+            if (nameArray === null) {
+                return;
+            }
+            nameArray = JSON.parse(nameArray);
+            let nameUid = [];
+            let messages = [];
+            let lastMessage = [];
+            for (let i = 0; i < nameArray.length; i++) {
+                nameUid = JSON.parse(nameArray[i]);
+                let chatBubble = document.createElement('chat-bubble');
+                chatBubble.$avatar.style.backgroundImage = "url(src/" + nameUid[1] + ".png)";
+                chatBubble.$name.innerText = nameUid[0];
+                messages = JSON.parse(localStorage.getItem(String(nameUid[1])));
+                lastMessage = messages[messages.length-1];
+                chatBubble.$text.innerText = JSON.parse(lastMessage)[1];
+                chatBubble.$date.innerText = JSON.parse(lastMessage)[0];
+                contactMenu.$container.appendChild(chatBubble);
+            }
+            this.hidden = false;
+        } else {
+            let menuElement = document.querySelector('.contact');
+            menuElement.querySelector('contacts-panel').remove();
+            this.hidden = true;
+        }
+        // if (this.hidden === true) {
 
+        // }
+    }
 }
 
 customElements.define('top-panel', TopPanel);
