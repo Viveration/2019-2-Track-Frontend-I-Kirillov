@@ -33,6 +33,7 @@ template.innerHTML = `
             margin-left: 10px;
             margin-right: auto;
             overflow: hidden;
+            min-width: 100px;
             flex-basis: content;
             color: #000000;
             white-space: nowrap;
@@ -42,10 +43,11 @@ template.innerHTML = `
             height: 100%;
         }
         .ContactDate {
-            padding-right: 10px;
+            margin-right: 10px;
             margin-left: 10px;
             overflow: hidden;
             flex-basis: content;
+            min-width: 40px;
             color: rgba(0, 0, 0, 0.5);
             white-space: nowrap;
             font-family: helvetica;
@@ -55,7 +57,6 @@ template.innerHTML = `
         }
         .TextAndCheck {
             width: 100%;
-            padding-right: 10px;
             margin-bottom: 10px;
             flex-basis: content;
             display: flex;

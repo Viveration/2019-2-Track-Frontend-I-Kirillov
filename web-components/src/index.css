@@ -35,13 +35,14 @@ contacts-panel {
 .nonMenu-part {
 	height: 100%;
 	width: 60%;
+	min-width: 400px;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: flex-end;
 }
 .contact {
-	min-width: 300px;
+	min-width: 250px;
 	width: 30%;
 	height: 100%;
 }
