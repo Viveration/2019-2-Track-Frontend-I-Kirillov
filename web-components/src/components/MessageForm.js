@@ -103,10 +103,10 @@ class MessageForm extends HTMLElement {
             localStorage.setItem('nameArray', '');
             nameArray = [];
             nameArray.push(JSON.stringify(nameUid));
-            if (uid === 0) {
-                nameArray.push(JSON.stringify(["Геннадий Горин", 1]));
-                nameArray.push(JSON.stringify(["Супер Сус", 2]));
-            }
+            // if (uid === 0) {
+            //     nameArray.push(JSON.stringify(["Геннадий Горин", 1]));
+            //    nameArray.push(JSON.stringify(["Супер Сус", 2]));
+            // }
             localStorage.setItem('nameArray', JSON.stringify(nameArray));
         }
 
