@@ -47,7 +47,7 @@ template.innerHTML = `
             margin-left: 10px;
             overflow: hidden;
             flex-basis: content;
-            min-width: 40px;
+            min-width: 52px;
             color: rgba(0, 0, 0, 0.5);
             white-space: nowrap;
             font-family: helvetica;

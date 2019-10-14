@@ -61,7 +61,7 @@ class MessageForm extends HTMLElement {
         this.$button.addEventListener('onClick', this._onSubmit.bind(this));
         this.$chat = this._shadowRoot.querySelector('.chat');
         this.$panel = this._shadowRoot.querySelector('top-panel');
-        this._historyInit(2);
+        this._historyInit(0);
     }
 
     _printLocalMessage(date, text) {
@@ -95,38 +95,21 @@ class MessageForm extends HTMLElement {
         }
     }
 
-    _addLocalMessage(name, date, text) {
-        let uid = null;
-        let nameUid = [];
+    _addLocalMessage(name, date, text, uid) {
+        let nameUid = [name, uid];
+        let nameArray = [];
+        let storage = [];
         if ((nameArray = localStorage.getItem('nameArray')) == null) {
             localStorage.setItem('nameArray', '');
             nameArray = [];
-            uid = 0;
-            nameUid = [name, uid];
             nameArray.push(JSON.stringify(nameUid));
-        } else {
-            if (nameArray !== '') {
-                nameArray = JSON.parse(nameArray);
-                for (let i = 0; i < nameArray.length; i++) {
-                    if (name === JSON.parse(nameArray[i])[0]) {
-                        uid = JSON.parse(nameArray[i])[1];
-                        break;
-                    }
-                }
-                if (uid === null) {
-                    uid = nameArray.length;
-                    nameUid = [name, uid];
-                    nameArray.push(JSON.stringify(nameUid));
-                }
-
-            } else {
-                nameArray = [];
-                uid = 0;
-                nameUid = [name, uid];
-                nameArray.push(JSON.stringify(nameUid));
-            }
+        if (uid == 0) {
+            nameArray.push(JSON.stringify(["Геннадий Горин", 1]));
+            nameArray.push(JSON.stringify(["Супер Сус", 2]));
         }
-        
+            localStorage.setItem('nameArray', JSON.stringify(nameArray));
+        }
+
 
         if ((storage = localStorage.getItem(String(uid))) == null) {
             localStorage.setItem(String(uid), '');
@@ -141,7 +124,6 @@ class MessageForm extends HTMLElement {
 
         let Message = [date, text];
         storage.push(JSON.stringify(Message));
-        localStorage.setItem('nameArray', JSON.stringify(nameArray));
         localStorage.setItem(String(uid), JSON.stringify(storage));
     }
 
@@ -157,13 +139,15 @@ class MessageForm extends HTMLElement {
         }
         newMessage.$date.innerText = Hour+":"+Minutes;
         let name = this.$panel.$name.innerText;
-        this._addLocalMessage(name, newMessage.$date.innerText, newMessage.$text.innerText);
+        let uid = this.$panel.$uid.innerText;
+        this._addLocalMessage(name, newMessage.$date.innerText, newMessage.$text.innerText, uid);
         if (this.$panel.$contactsHidden === false) {
             let panel = document.querySelector('.contact').querySelector('contacts-panel');
             let chats = panel.$container.querySelectorAll('chat-bubble');
             for (let i = 0; i < chats.length; i++) {
                 if (chats[i].$uid.innerText === this.$panel.$uid.innerText) {
                     chats[i].$text.innerText = newMessage.$text.innerText;
+                    chats[i].$date.innerText = newMessage.$date.innerText;
                     break;
                 }
             }

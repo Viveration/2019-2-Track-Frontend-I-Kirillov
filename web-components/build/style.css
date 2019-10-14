@@ -19,6 +19,8 @@ body {
     height: 100%;
 }
 contacts-panel {
+	display: flex;
+	flex-flow: column nowrap;
 	height: 100%;
 	width: 100%;
 

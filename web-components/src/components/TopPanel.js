@@ -43,12 +43,13 @@ template.innerHTML = `
             min-height: 15px;
         }
         .profileAvatar {
+            background-color: white;
             background-repeat: no-repeat;
             margin-left: 20px;
             height: 46px;
             width: 46px;
             border-radius: 20px;
-            background-image: url('src/2.png');
+            background-image: url('src/0.png');
             background-size: cover;
         }
         .contacts {
@@ -82,8 +83,8 @@ template.innerHTML = `
         </div>
         <div class = "profileAvatar"></div>
         <div class = "profileInformation">
-            <div hidden class="uid">2</div>
-            <div class = "profileName">Супер Сус</div>
+            <div hidden class="uid">0</div>
+            <div class = "profileName">Всеволод Истомин</div>
             <div class = "profileActivity">Был в сети 228 минут назад</div>
         </div>
         <div class = "menuButton">
@@ -146,11 +147,15 @@ class TopPanel extends HTMLElement {
     }
     _onContactsClick(event) {
         if (this.$contactsHidden === true) {
+            this.$contactsHidden = false;
             let menuElement = document.querySelector('.contact');
             let contactMenu = document.createElement('contacts-panel');
             menuElement.appendChild(contactMenu);
             let nameArray = localStorage.getItem('nameArray');
             if (nameArray === null) {
+                return;
+            }
+            if (nameArray === '') {
                 return;
             }
             nameArray = JSON.parse(nameArray);
@@ -161,15 +166,24 @@ class TopPanel extends HTMLElement {
                 nameUid = JSON.parse(nameArray[i]);
                 let chatBubble = document.createElement('chat-bubble');
                 chatBubble.$avatar.style.backgroundImage = "url(src/" + nameUid[1] + ".png)";
+                if (nameUid[0] === "Name") {
+                    chatBubble.$avatar.style.backgroundImage = "url(src/default.png)";
+                }
                 chatBubble.$name.innerText = nameUid[0];
-                messages = JSON.parse(localStorage.getItem(String(nameUid[1])));
+                if ((messages = localStorage.getItem(String(nameUid[1]))) !== null && messages !== "") {
+                    messages = JSON.parse(messages);
+                    lastMessage = messages[messages.length-1];
+                    chatBubble.$text.innerText = JSON.parse(lastMessage)[1];
+                    chatBubble.$date.innerText = JSON.parse(lastMessage)[0];
+                } else {
+                    chatBubble.$text.innerText = "Сообщений нет!";
+                    chatBubble.$date.innerText = "--:--";
+                }
+                
                 chatBubble.$uid.innerText = nameUid[1];
-                lastMessage = messages[messages.length-1];
-                chatBubble.$text.innerText = JSON.parse(lastMessage)[1];
-                chatBubble.$date.innerText = JSON.parse(lastMessage)[0];
+                
                 contactMenu.$container.appendChild(chatBubble);
             }
-            this.$contactsHidden = false;
         } else {
             let menuElement = document.querySelector('.contact');
             menuElement.querySelector('contacts-panel').remove();
