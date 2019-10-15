@@ -65,7 +65,7 @@ class MessageForm extends HTMLElement {
     }
 
     _printLocalMessage(date, text) {
-        let newMes = document.createElement("message-bubble");
+        const newMes = document.createElement("message-bubble");
         newMes.$text.innerText = text;
         newMes.$date.innerText = date;
         this.$chat.insertBefore(newMes, this._shadowRoot.querySelector('message-bubble'));
@@ -90,13 +90,13 @@ class MessageForm extends HTMLElement {
             }
         }
         for (let i = 0; i < storage.length; i++) {
-            let mess = JSON.parse(storage[i]);
+            const mess = JSON.parse(storage[i]);
             this._printLocalMessage(mess[0], mess[1]);
         }
     }
 
     _addLocalMessage(name, date, text, uid) {
-        let nameUid = [name, uid];
+        const nameUid = [name, uid];
         let nameArray = [];
         let storage = [];
         if ((nameArray = localStorage.getItem('nameArray')) == null) {
@@ -122,28 +122,28 @@ class MessageForm extends HTMLElement {
             }
         }
 
-        let Message = [date, text];
+        const Message = [date, text];
         storage.push(JSON.stringify(Message));
         localStorage.setItem(String(uid), JSON.stringify(storage));
     }
 
     _onSubmit (event) {
         event.preventDefault();
-        let newMessage = document.createElement('message-bubble');
-        let Data = new Date();
-        let Hour = Data.getHours();
-        let Minutes = Data.getMinutes();
+        const newMessage = document.createElement('message-bubble');
+        const Data = new Date();
+        const Hour = Data.getHours();
+        const Minutes = Data.getMinutes();
         newMessage.$text.innerText = this.$input.value;
         if (newMessage.$text.innerText === '') {
             return;
         }
         newMessage.$date.innerText = Hour+":"+Minutes;
-        let name = this.$panel.$name.innerText;
-        let uid = this.$panel.$uid.innerText;
+        const name = this.$panel.$name.innerText;
+        const uid = this.$panel.$uid.innerText;
         this._addLocalMessage(name, newMessage.$date.innerText, newMessage.$text.innerText, uid);
         if (this.$panel.$contactsHidden === false) {
-            let panel = document.querySelector('.contact').querySelector('contacts-panel');
-            let chats = panel.$container.querySelectorAll('chat-bubble');
+            const panel = document.querySelector('.contact').querySelector('contacts-panel');
+            const chats = panel.$container.querySelectorAll('chat-bubble');
             for (let i = 0; i < chats.length; i++) {
                 if (chats[i].$uid.innerText === this.$panel.$uid.innerText) {
                     chats[i].$text.innerText = newMessage.$text.innerText;

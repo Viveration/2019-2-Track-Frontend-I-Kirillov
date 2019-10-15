@@ -76,7 +76,7 @@ class FormInput extends HTMLElement {
     }
 
     get value() {
-        let result = this.$input.value;
+        const result = this.$input.value;
         this.$input.value = '';
         return result;
     }

@@ -148,8 +148,8 @@ class TopPanel extends HTMLElement {
     _onContactsClick(event) {
         if (this.$contactsHidden === true) {
             this.$contactsHidden = false;
-            let menuElement = document.querySelector('.contact');
-            let contactMenu = document.createElement('contacts-panel');
+            const menuElement = document.querySelector('.contact');
+            const contactMenu = document.createElement('contacts-panel');
             menuElement.appendChild(contactMenu);
             let nameArray = localStorage.getItem('nameArray');
             if (nameArray === null) {
@@ -164,7 +164,7 @@ class TopPanel extends HTMLElement {
             let lastMessage = [];
             for (let i = 0; i < nameArray.length; i++) {
                 nameUid = JSON.parse(nameArray[i]);
-                let chatBubble = document.createElement('chat-bubble');
+                const chatBubble = document.createElement('chat-bubble');
                 chatBubble.$avatar.style.backgroundImage = "url(src/" + nameUid[1] + ".png)";
                 if (nameUid[0] === "Name") {
                     chatBubble.$avatar.style.backgroundImage = "url(src/default.png)";
@@ -185,7 +185,7 @@ class TopPanel extends HTMLElement {
                 contactMenu.$container.appendChild(chatBubble);
             }
         } else {
-            let menuElement = document.querySelector('.contact');
+            const menuElement = document.querySelector('.contact');
             menuElement.querySelector('contacts-panel').remove();
             this.$contactsHidden = true;
         }

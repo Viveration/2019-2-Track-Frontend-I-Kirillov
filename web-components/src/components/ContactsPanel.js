@@ -147,7 +147,7 @@ class ContactsPanel extends HTMLElement {
 
     }
     _createChat(event) {
-        let name = "Name";
+        const name = "Name";
         let uid = null;
         if ((nameArray = localStorage.getItem('nameArray')) == null) {
             localStorage.setItem('nameArray', '');
@@ -169,7 +169,7 @@ class ContactsPanel extends HTMLElement {
             }
         }
         localStorage.setItem('nameArray', JSON.stringify(nameArray));
-        let chatBubble = document.createElement('chat-bubble');
+        const chatBubble = document.createElement('chat-bubble');
         chatBubble.$avatar.style.backgroundImage = "url(src/default.png)";
         chatBubble.$name.innerText = name;
         chatBubble.$uid.innerText = uid;
@@ -179,9 +179,9 @@ class ContactsPanel extends HTMLElement {
     }
     _onClick(event) {
         if (this.$searchHidden === true) {
-            let form = document.createElement('div');
+            const form = document.createElement('div');
             form.className = 'inputForm';
-            let search = document.createElement('input');
+            const search = document.createElement('input');
             search.type = "text";
             search.plaseholder = "Поиск...";
             search.className = "searchInput";

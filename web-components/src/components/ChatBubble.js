@@ -138,11 +138,11 @@ class ChatBubble extends HTMLElement {
     }
 
     _onClick(event) {
-        let panel = document.querySelector('message-form').$panel;
+        const panel = document.querySelector('message-form').$panel;
         panel.$name.innerText = this.$name.innerText;
         panel.$uid = this.$uid;
         panel.$avatar.style.backgroundImage = this.$avatar.style.backgroundImage;
-        let messageForm = document.querySelector('message-form');
+        const messageForm = document.querySelector('message-form');
         messageForm._historyInit(Number(this.$uid.innerText));
 
 
