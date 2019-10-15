@@ -12,7 +12,7 @@ template.innerHTML = `
             background-color: #8E24AA;
         }
         .profileInformation {
-            overflow: contactsHidden;
+            overflow: hidden;
             margin-right: auto;
             align-items: flex-start;
             min-width: 100px;
@@ -21,7 +21,7 @@ template.innerHTML = `
         }
         .profileName {
             width: 100%;
-            overflow: contactsHidden;
+            overflow: hidden;
             flex-basis: content;
             color: #FFFFFF;
             white-space: nowrap;
@@ -31,7 +31,7 @@ template.innerHTML = `
             height: 60%;
         }
         .profileActivity {
-            overflow: contactsHidden;
+            overflow: hidden;
             white-space: nowrap;
             width: 100%;
             height: 40%;
