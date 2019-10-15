@@ -65,7 +65,7 @@ class MessageForm extends HTMLElement {
     }
 
     _printLocalMessage(date, text) {
-        const newMes = document.createElement("message-bubble");
+        const newMes = document.createElement('message-bubble');
         newMes.$text.innerText = text;
         newMes.$date.innerText = date;
         this.$chat.insertBefore(newMes, this._shadowRoot.querySelector('message-bubble'));
@@ -137,7 +137,7 @@ class MessageForm extends HTMLElement {
         if (newMessage.$text.innerText === '') {
             return;
         }
-        newMessage.$date.innerText = Hour+":"+Minutes;
+        newMessage.$date.innerText = Hour+':'+Minutes;
         const name = this.$panel.$name.innerText;
         const uid = this.$panel.$uid.innerText;
         this._addLocalMessage(name, newMessage.$date.innerText, newMessage.$text.innerText, uid);

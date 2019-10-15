@@ -165,19 +165,19 @@ class TopPanel extends HTMLElement {
             for (let i = 0; i < nameArray.length; i++) {
                 nameUid = JSON.parse(nameArray[i]);
                 const chatBubble = document.createElement('chat-bubble');
-                chatBubble.$avatar.style.backgroundImage = "url(src/" + nameUid[1] + ".png)";
-                if (nameUid[0] === "Name") {
-                    chatBubble.$avatar.style.backgroundImage = "url(src/default.png)";
+                chatBubble.$avatar.style.backgroundImage = 'url(src/' + nameUid[1] + '.png)';
+                if (nameUid[0] === 'Name') {
+                    chatBubble.$avatar.style.backgroundImage = 'url(src/default.png)';
                 }
                 chatBubble.$name.innerText = nameUid[0];
-                if ((messages = localStorage.getItem(String(nameUid[1]))) !== null && messages !== "") {
+                if ((messages = localStorage.getItem(String(nameUid[1]))) !== null && messages !== '') {
                     messages = JSON.parse(messages);
                     lastMessage = messages[messages.length-1];
                     chatBubble.$text.innerText = JSON.parse(lastMessage)[1];
                     chatBubble.$date.innerText = JSON.parse(lastMessage)[0];
                 } else {
-                    chatBubble.$text.innerText = "Сообщений нет!";
-                    chatBubble.$date.innerText = "--:--";
+                    chatBubble.$text.innerText = 'Сообщений нет!';
+                    chatBubble.$date.innerText = '--:--';
                 }
                 
                 chatBubble.$uid.innerText = nameUid[1];

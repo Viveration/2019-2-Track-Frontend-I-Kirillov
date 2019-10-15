@@ -9,6 +9,7 @@ module.exports = {
   		"no-plusplus": 0,
   		"class-methods-use-this": 0,
   		"prefer-template": 0,
+      "quotes": ["error", "single"],
   	    "linebreak-style": ["error", "unix"],
         "semi": ["error", "always"],
         "indent": ["error", 4],

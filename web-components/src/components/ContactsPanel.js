@@ -147,7 +147,7 @@ class ContactsPanel extends HTMLElement {
 
     }
     _createChat(event) {
-        const name = "Name";
+        const name = 'Name';
         let uid = null;
         if ((nameArray = localStorage.getItem('nameArray')) == null) {
             localStorage.setItem('nameArray', '');
@@ -170,11 +170,11 @@ class ContactsPanel extends HTMLElement {
         }
         localStorage.setItem('nameArray', JSON.stringify(nameArray));
         const chatBubble = document.createElement('chat-bubble');
-        chatBubble.$avatar.style.backgroundImage = "url(src/default.png)";
+        chatBubble.$avatar.style.backgroundImage = 'url(src/default.png)';
         chatBubble.$name.innerText = name;
         chatBubble.$uid.innerText = uid;
-        chatBubble.$text.innerText = "";
-        chatBubble.$date.innerText = "--:--";
+        chatBubble.$text.innerText = '';
+        chatBubble.$date.innerText = '--:--';
         this.$container.appendChild(chatBubble);
     }
     _onClick(event) {
@@ -182,9 +182,9 @@ class ContactsPanel extends HTMLElement {
             const form = document.createElement('div');
             form.className = 'inputForm';
             const search = document.createElement('input');
-            search.type = "text";
-            search.plaseholder = "Поиск...";
-            search.className = "searchInput";
+            search.type = 'text';
+            search.placeholder = 'Поиск...';
+            search.className = 'searchInput';
             this.$head.insertBefore(form, this.$button);
             this.$head.querySelector('.inputForm').appendChild(search);
             this.$searchHidden = false;
