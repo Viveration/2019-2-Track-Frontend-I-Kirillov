@@ -141,6 +141,7 @@ dist/
 #### custom ####
 flow-typed/
 web-components/false
+web-components/build
 .nuxt/
 .nuxt/*
 docs/_book/
