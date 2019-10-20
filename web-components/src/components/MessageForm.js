@@ -1,12 +1,21 @@
 const template = document.createElement('template');
 template.innerHTML = `
     <style>
+        @keyframes show {
+            from {
+                transform: scale(0.001);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
         message-bubble {
             max-width: 70%;
             display: flex;
             flex-flow: row nowrap;
             align-items: flex-end;
-
         }
         .chat {
             width: 100%;
@@ -37,7 +46,6 @@ template.innerHTML = `
             flex-flow: row nowrap;
             align-items: center;
             width: 100%;
-            min-width: 500px;
             height: 50px;
         }
     </style>
@@ -96,17 +104,17 @@ class MessageForm extends HTMLElement {
     }
 
     _addLocalMessage(name, date, text, uid) {
-        const nameUid = [name, uid];
+        const nameUid = [name, Number(uid)];
         let nameArray = [];
         let storage = [];
         if ((nameArray = localStorage.getItem('nameArray')) == null) {
             localStorage.setItem('nameArray', '');
             nameArray = [];
             nameArray.push(JSON.stringify(nameUid));
-            // if (uid === 0) {
-            //     nameArray.push(JSON.stringify(["Геннадий Горин", 1]));
-            //    nameArray.push(JSON.stringify(["Супер Сус", 2]));
-            // }
+            /* if (uid === 0) {
+                nameArray.push(JSON.stringify(['Геннадий Горин', 1]));
+                nameArray.push(JSON.stringify(['Супер Сус', 2]));
+            } */
             localStorage.setItem('nameArray', JSON.stringify(nameArray));
         }
 
@@ -134,12 +142,13 @@ class MessageForm extends HTMLElement {
         const Hour = Data.getHours();
         const Minutes = Data.getMinutes();
         newMessage.$text.innerText = this.$input.value;
+        
         if (newMessage.$text.innerText === '') {
             return;
         }
         newMessage.$date.innerText = Hour+':'+Minutes;
         const name = this.$panel.$name.innerText;
-        const uid = this.$panel.$uid.innerText;
+        const uid = Number(this.$panel.$uid.innerText);
         this._addLocalMessage(name, newMessage.$date.innerText, newMessage.$text.innerText, uid);
         if (this.$panel.$contactsHidden === false) {
             const panel = document.querySelector('.contact').querySelector('contacts-panel');
@@ -152,6 +161,7 @@ class MessageForm extends HTMLElement {
                 }
             }
         }
+        newMessage.style.animation = 'show 1s linear';
         this.$chat.insertBefore(newMessage, this._shadowRoot.querySelector('message-bubble'));
 
     }

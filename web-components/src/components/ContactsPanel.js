@@ -1,8 +1,17 @@
 const template = document.createElement('template');
 template.innerHTML = `
     <style>
+        @keyframes show {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
         contacts {
             display: flex;
+            overflow: hidden;
             flex-flow: column nowrap;
             min-height: 100%;
             width: 100%;
@@ -11,8 +20,19 @@ template.innerHTML = `
             flex-flow: column nowrap:
             justify-content: flex-start;
             align-items: center;
+            animation: showC 2s ease-in;
         }
-
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 153, 255, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 153, 255, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 0 10px rgba(255, 151, 255, 0);
+            }
+        }
         .inputForm {
             display: flex;
             min-width: 60px;
@@ -42,12 +62,19 @@ template.innerHTML = `
             justify-content: flex-start;
             align-items: center;
         }
-
+        @keyframes headSlide {
+            from {
+                margin-bottom: 100%
+            }
+            to {
+                margin-bottom: 0px;
+            }
+        }
         .logo {
             min-width: 130px;
             font-weight: 700;
             height: 30px;
-            margin-left: 2%;
+            margin-left: 80px;
             margin-right: auto;
             flex-basis: content;
             overflow: hidden;
@@ -56,13 +83,21 @@ template.innerHTML = `
             font-family: helvetica;
             text-align: center;
             font-size: 25px;
+            animation: headSlide 1s ease-out;
         }
 
         .searchButton {
             height: 30px;
             width: 30px;
-            margin-left: 5px;
-            margin-right: 5px;
+            padding: 10px;
+            min-width: 30px;
+            animation: headSlide 1s ease-out;
+        }
+        .searchButton:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+        .searchButton:active {
+            background-color: #990099;
         }
 
         .contactsContainer {
@@ -75,8 +110,16 @@ template.innerHTML = `
             overflow-y: auto;
             overflow-x: hidden;
             align-items: flex-start;
+            animation: showC 2s ease-out;
         }
-
+        @keyframes showC {
+            from {
+                margin-bottom: 200%;
+            }
+            to {
+                margin-bottom: 0px;
+            }
+        }
         chat-bubble {
             width: 100%;
             border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
@@ -87,7 +130,7 @@ template.innerHTML = `
             justify-content: center;
             align-items: center;
             position: absolute;
-            z-index: 1;
+            z-index: 3;
             bottom: 5px;
             right: 20px;
             width: 50px;
@@ -138,15 +181,22 @@ class ContactsPanel extends HTMLElement {
         this._shadowRoot.appendChild(template.content.cloneNode(true));
 
         this.$searchHidden = true;
+        this.$activeChatUid = null;
         this.$container = this._shadowRoot.querySelector('.contactsContainer');
         this.$head = this._shadowRoot.querySelector('.contactsHead');
         this.$button = this.$head.querySelector('.searchButton');
         this.$button.addEventListener('click', this._onClick.bind(this));
         this.$createButton = this._shadowRoot.querySelector('.createChat');
         this.$createButton.addEventListener('click', this._createChat.bind(this));
+        this.$createButton.addEventListener('animationend', this._animationDel.bind(this));
 
     }
+    _animationDel(event) {
+        this.$createButton.style.animation = '';
+    }
     _createChat(event) {
+        const button = this.$createButton;
+        this.$createButton.style.animation = 'pulse 1s linear';
         const name = 'Name';
         let uid = null;
         if ((nameArray = localStorage.getItem('nameArray')) == null) {
@@ -176,6 +226,7 @@ class ContactsPanel extends HTMLElement {
         chatBubble.$text.innerText = '';
         chatBubble.$date.innerText = '--:--';
         this.$container.appendChild(chatBubble);
+        chatBubble.style.animation = 'show 1s linear';
     }
     _onClick(event) {
         if (this.$searchHidden === true) {
@@ -183,6 +234,7 @@ class ContactsPanel extends HTMLElement {
             form.className = 'inputForm';
             const search = document.createElement('input');
             search.type = 'text';
+            form.style.animation = 'show 1s, ease-out';
             search.placeholder = 'Поиск...';
             search.className = 'searchInput';
             this.$head.insertBefore(form, this.$button);
@@ -194,7 +246,5 @@ class ContactsPanel extends HTMLElement {
         }
     }
 
-
 }      
-
 customElements.define('contacts-panel', ContactsPanel);

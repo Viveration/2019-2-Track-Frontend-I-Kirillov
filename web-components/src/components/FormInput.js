@@ -5,10 +5,24 @@ template.innerHTML = `
             border: 0;
             background-color: rgba(240, 240, 240);
             height 25px;
-            width: calc(60%-120px);
+            width: auto;
             outline: none;
             flex-grow: 1;
             rgba(142, 36, 170, 0.5);
+        }
+        @keyframes clickAnimation {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
+            }
+            50% {
+                box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.16);
+            }
+            99% {
+                box-shadow: 0 0 0 5px rgba(0, 0, 0, 0)
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            }
         }
         .button {
             fill: currentColor;
@@ -22,12 +36,19 @@ template.innerHTML = `
             position: relative
 
         }
+        .button:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+        .button:active {
+            background-color: #FF99FF;
+        }
         .inp {
             flex-flow: row nowrap;
             display: flex;
             align-items: center;
             height: 40px;
             padding-left: 10px;
+            padding-right: 10px;
             background-color: rgb(0, 0, 0, 0.08);
             border-radius: 5px;
         }
@@ -63,9 +84,14 @@ class FormInput extends HTMLElement {
         this.$input = this.shadowRoot.querySelector('input');
         this.$myButton = this._shadowRoot.querySelector('.button');
         this.$myButton.addEventListener('click', this._onClick.bind(this));
+        this.$myButton.addEventListener('animationend', this._animationDel.bind(this));
+    }
+    _animationDel(event) {
+        this.$myButton.style.animation = '';
     }
     _onClick (event) {
         this.$myButton.dispatchEvent(new Event('onClick'));
+        this.$myButton.style.animation = 'clickAnimation 1s ease-in';
     }
     static get observedAttributes() {
         return ['name', 'value', 'placeholder', 'disabled'];

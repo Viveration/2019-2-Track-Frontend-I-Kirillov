@@ -8,14 +8,12 @@ template.innerHTML = `
             align-items: center;
             height: 50px;
             width: 100%;
-            min-width: 200px;
             background-color: #8E24AA;
         }
         .profileInformation {
             overflow: hidden;
             margin-right: auto;
             align-items: flex-start;
-            min-width: 100px;
             margin-left: 10px;
             width: 50%;
         }
@@ -53,16 +51,30 @@ template.innerHTML = `
             background-size: cover;
         }
         .contacts {
-            margin-left: 10px;
             height: 40px;
             width: 40px;
+            padding: 5px;
+            z-index: 2;
+        }
+        .contacts:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+        .contacts:active {
+            background-color: #990099;
         }
         .menuButton {
             margin-right: 10px;
             height: 40px;
             width: 40px;
         }
-
+        @keyframes disappear {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
 
     </style>
     <panel>
@@ -148,8 +160,9 @@ class TopPanel extends HTMLElement {
     _onContactsClick(event) {
         if (this.$contactsHidden === true) {
             this.$contactsHidden = false;
-            const menuElement = document.querySelector('.contact');
+            const menuElement = document.querySelector('.whole-page');
             const contactMenu = document.createElement('contacts-panel');
+            contactMenu.$activeChatUid = Number(this.$uid.innerText);
             menuElement.appendChild(contactMenu);
             let nameArray = localStorage.getItem('nameArray');
             if (nameArray === null) {
@@ -181,14 +194,22 @@ class TopPanel extends HTMLElement {
                 }
                 
                 chatBubble.$uid.innerText = nameUid[1];
-                
+                if (nameUid[1] === Number(this.$uid.innerText)) {
+                    chatBubble.style.backgroundColor = '#FF99FF';
+                }
+                this.$page = document.querySelector('.whole-page').querySelector('contacts-panel');
+                this.$page.addEventListener('animationend', this._animationEnd.bind(this));
                 contactMenu.$container.appendChild(chatBubble);
             }
         } else {
-            const menuElement = document.querySelector('.contact');
-            menuElement.querySelector('contacts-panel').remove();
+            const element = document.querySelector('.whole-page').querySelector('contacts-panel');
+            element.style.animation = 'disappear 1s, linear';
+            // element.remove();
             this.$contactsHidden = true;
         }
+    }
+    _animationEnd(event) {
+        this.$page.remove();
     }
 }
 

@@ -11,6 +11,19 @@ template.innerHTML = `
             height: 80px;
             width: 100%;
         }
+        Chat:hover {
+            background-color: rgba(0, 0, 0, 0.16);
+        }
+        @keyframes slide {
+            from {
+                background-color: rgba(0, 0, 0, 0.08);
+            }
+            
+            to {
+                background-color: #FF99FF;
+            }
+
+        }
         .MainPart {
             display: flex;
             width: calc(100% - 80px);
@@ -133,17 +146,30 @@ class ChatBubble extends HTMLElement {
         this.$name = this.$information.querySelector('.ContactName');
         this.$date = this.$information.querySelector('.ContactDate');
         this.$uid = this.$chat.querySelector('.uid');
+        this.$parent = document.querySelector('.whole-page').querySelector('contacts-panel');
 
         this.$chat.addEventListener('click', this._onClick.bind(this));
     }
 
     _onClick(event) {
+        const chats = this.$parent.$container.querySelectorAll('chat-bubble');
+        for (let i = 0; i < chats.length; i++) {
+            if (Number(chats[i].$uid.innerText) === this.$parent.$activeChatUid) {
+                chats[i].style.backgroundColor = '';
+                chats[i].style.animation = '';
+            }
+        }
+        this.$parent.$activeChatUid = Number(this.$uid.innerText);
+        this.style.animation = 'slide 0.7s linear';
+        this.style.backgroundColor = '#FF99FF';
         const panel = document.querySelector('message-form').$panel;
         panel.$name.innerText = this.$name.innerText;
-        panel.$uid = this.$uid;
+        panel.$uid.innerText = Number(this.$uid.innerText);
         panel.$avatar.style.backgroundImage = this.$avatar.style.backgroundImage;
         const messageForm = document.querySelector('message-form');
         messageForm._historyInit(Number(this.$uid.innerText));
+        document.querySelector('.whole-page').querySelector('contacts-panel').style.animation = 'disappear 1s, linear';
+        document.querySelector('.whole-page').querySelector('message-form').$panel.$contactsHidden = true;
 
 
     }
