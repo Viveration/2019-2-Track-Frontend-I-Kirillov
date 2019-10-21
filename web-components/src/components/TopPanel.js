@@ -180,7 +180,7 @@ class TopPanel extends HTMLElement {
                 const chatBubble = document.createElement('chat-bubble');
                 chatBubble.$avatar.style.backgroundImage = 'url(src/' + nameUid[1] + '.png)';
                 if (nameUid[0] === 'Name') {
-                    chatBubble.$avatar.style.backgroundImage = 'url(src/default.png)';
+                    chatBubble.$avatar.style.backgroundImage = 'url(src/default.svg)';
                 }
                 chatBubble.$name.innerText = nameUid[0];
                 if ((messages = localStorage.getItem(String(nameUid[1]))) !== null && messages !== '') {
@@ -197,14 +197,12 @@ class TopPanel extends HTMLElement {
                 if (nameUid[1] === Number(this.$uid.innerText)) {
                     chatBubble.style.backgroundColor = '#FF99FF';
                 }
-                this.$page = document.querySelector('.whole-page').querySelector('contacts-panel');
-                this.$page.addEventListener('animationend', this._animationEnd.bind(this));
                 contactMenu.$container.appendChild(chatBubble);
             }
+            this.$page = document.querySelector('.whole-page').querySelector('contacts-panel');
+            this.$page.addEventListener('animationend', this._animationEnd.bind(this));
         } else {
-            const element = document.querySelector('.whole-page').querySelector('contacts-panel');
-            element.style.animation = 'disappear 1s, linear';
-            // element.remove();
+            this.$page.style.animation = 'disappear 1s, linear';
             this.$contactsHidden = true;
         }
     }
