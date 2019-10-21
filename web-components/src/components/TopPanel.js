@@ -8,14 +8,12 @@ template.innerHTML = `
             align-items: center;
             height: 50px;
             width: 100%;
-            min-width: 200px;
             background-color: #8E24AA;
         }
         .profileInformation {
             overflow: hidden;
             margin-right: auto;
             align-items: flex-start;
-            min-width: 100px;
             margin-left: 10px;
             width: 50%;
         }
@@ -53,17 +51,36 @@ template.innerHTML = `
             background-size: cover;
         }
         .contacts {
-            margin-left: 10px;
             height: 40px;
             width: 40px;
+            padding: 5px;
+            z-index: 2;
+        }
+        .contacts:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+        .contacts:active {
+            background-color: #990099;
         }
         .menuButton {
             margin-right: 10px;
             height: 40px;
             width: 40px;
         }
-
-
+        @keyframes disappear {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        .fadeAway {
+            animation: disappear 0.5s ease-out;
+        }
+        .unclickable {
+            pointer-events: none;
+        }
     </style>
     <panel>
         <div class = "contacts">
@@ -148,15 +165,22 @@ class TopPanel extends HTMLElement {
     _onContactsClick(event) {
         if (this.$contactsHidden === true) {
             this.$contactsHidden = false;
-            const menuElement = document.querySelector('.contact');
+            const menuElement = document.querySelector('.whole-page');
             const contactMenu = document.createElement('contacts-panel');
+            contactMenu.$activeChatUid = Number(this.$uid.innerText);
             menuElement.appendChild(contactMenu);
             let nameArray = localStorage.getItem('nameArray');
             if (nameArray === null) {
-                return;
+                this.$page = contactMenu;
+                this.$page.addEventListener('animationend', this._animationEnd.bind(this));
+                this.$page.classList.add('fadeAway');
+                this.$contactsHidden = true;
             }
             if (nameArray === '') {
-                return;
+                this.$page = contactMenu;
+                this.$page.addEventListener('animationend', this._animationEnd.bind(this));
+                this.$page.classList.add('fadeAway');
+                this.$contactsHidden = true;
             }
             nameArray = JSON.parse(nameArray);
             let nameUid = [];
@@ -167,7 +191,7 @@ class TopPanel extends HTMLElement {
                 const chatBubble = document.createElement('chat-bubble');
                 chatBubble.$avatar.style.backgroundImage = 'url(src/' + nameUid[1] + '.png)';
                 if (nameUid[0] === 'Name') {
-                    chatBubble.$avatar.style.backgroundImage = 'url(src/default.png)';
+                    chatBubble.$avatar.style.backgroundImage = 'url(src/default.svg)';
                 }
                 chatBubble.$name.innerText = nameUid[0];
                 if ((messages = localStorage.getItem(String(nameUid[1]))) !== null && messages !== '') {
@@ -181,14 +205,22 @@ class TopPanel extends HTMLElement {
                 }
                 
                 chatBubble.$uid.innerText = nameUid[1];
-                
+                if (nameUid[1] === Number(this.$uid.innerText)) {
+                    chatBubble.classList.add('currentChat');
+                }
                 contactMenu.$container.appendChild(chatBubble);
             }
+            this.$page = contactMenu;
+            this.$page.addEventListener('animationend', this._animationEnd.bind(this));
         } else {
-            const menuElement = document.querySelector('.contact');
-            menuElement.querySelector('contacts-panel').remove();
+            this.$page.classList.add('fadeAway');
+            this.$contacts.classList.add('unclickable');
             this.$contactsHidden = true;
         }
+    }
+    _animationEnd(event) {
+        this.$page.remove();
+        this.$contacts.classList.remove('unclickable');
     }
 }
 

@@ -11,6 +11,19 @@ template.innerHTML = `
             height: 80px;
             width: 100%;
         }
+        Chat:hover {
+            background-color: rgba(0, 0, 0, 0.16);
+        }
+        @keyframes slide {
+            from {
+                background-color: rgba(0, 0, 0, 0.08);
+            }
+            
+            to {
+                background-color: #FF99FF;
+            }
+
+        }
         .MainPart {
             display: flex;
             width: calc(100% - 80px);
@@ -91,14 +104,18 @@ template.innerHTML = `
             background-size: cover;
             background-repeat: no-repeat;
         }
+        currentChat {
+            animation: 'slide 0.5s linear';
+            background-color: #FF99FF;
+        }
     </style>
         <Chat>
             <div hidden class="uid"></div>
             <div class ="contactAvatar"></div>
-            <div class ="MainPart">
+            <div id-value="" class ="MainPart">
                 <div class = "NameAndDate">
                     <div class="ContactName">Всеволод Истомин</div>
-                    <div class="ContactDate">2:28</div>
+                        <div class="ContactDate">2:28</div>
                     </div>
                 <div class = "TextAndCheck">
                     <div class="ContactText">Да да я</div>
@@ -125,6 +142,8 @@ class ChatBubble extends HTMLElement {
         this._shadowRoot.appendChild(template.content.cloneNode(true));
 
         this.$chat = this._shadowRoot.querySelector('Chat');
+        // const uid = this.$chat.querySelector('.main').getAttribute('id-value')
+
         this.$avatar = this._shadowRoot.querySelector('.contactAvatar');
         this.$information = this._shadowRoot.querySelector('.NameAndDate');
         this.$content = this._shadowRoot.querySelector('.TextAndCheck');
@@ -133,17 +152,31 @@ class ChatBubble extends HTMLElement {
         this.$name = this.$information.querySelector('.ContactName');
         this.$date = this.$information.querySelector('.ContactDate');
         this.$uid = this.$chat.querySelector('.uid');
+        this.$parent = document.querySelector('.whole-page').querySelector('contacts-panel');
 
         this.$chat.addEventListener('click', this._onClick.bind(this));
     }
 
     _onClick(event) {
+        const chats = this.$parent.$container.querySelectorAll('chat-bubble');
+        // for (const chat of chats) {
+        //   if (Number(chat.$))
+        // }
+        for (let i = 0; i < chats.length; i++) {
+            if (Number(chats[i].$uid.innerText) === this.$parent.$activeChatUid) {
+                this.classList.remove('currentChat');
+            }
+        }
+        this.$parent.$activeChatUid = Number(this.$uid.innerText);
+        this.classList.add('currentChat');
         const panel = document.querySelector('message-form').$panel;
         panel.$name.innerText = this.$name.innerText;
-        panel.$uid = this.$uid;
+        panel.$uid.innerText = Number(this.$uid.innerText);
         panel.$avatar.style.backgroundImage = this.$avatar.style.backgroundImage;
         const messageForm = document.querySelector('message-form');
         messageForm._historyInit(Number(this.$uid.innerText));
+        document.querySelector('.whole-page').querySelector('contacts-panel').classList.add('fadeAway');
+        document.querySelector('.whole-page').querySelector('message-form').$panel.$contactsHidden = true;
 
 
     }
