@@ -20,7 +20,7 @@ template.innerHTML = `
             flex-flow: column nowrap:
             justify-content: flex-start;
             align-items: center;
-            animation: showC 2s ease-in;
+            animation: showC 0.5s ease-in;
         }
         @keyframes pulse {
             0% {
@@ -83,7 +83,7 @@ template.innerHTML = `
             font-family: helvetica;
             text-align: center;
             font-size: 25px;
-            animation: headSlide 1s ease-out;
+            animation: headSlide 0.5s ease-out;
         }
 
         .searchButton {
@@ -91,7 +91,7 @@ template.innerHTML = `
             width: 30px;
             padding: 10px;
             min-width: 30px;
-            animation: headSlide 1s ease-out;
+            animation: headSlide 0.5s ease-out;
         }
         .searchButton:hover {
             background-color: rgba(0, 0, 0, 0.08);
@@ -110,7 +110,7 @@ template.innerHTML = `
             overflow-y: auto;
             overflow-x: hidden;
             align-items: flex-start;
-            animation: showC 2s ease-out;
+            animation: showC 0.5s ease-out;
         }
         @keyframes showC {
             from {
@@ -137,6 +137,12 @@ template.innerHTML = `
             height: 50px;
             border-radius: 25px;
             background-color: #FF99FF;
+        }
+        .pulse {
+            animation: pulse 1s linear;
+        }
+        .show {
+            animation: show 0.5s linear;
         }
     </style>
         <contacts>
@@ -192,11 +198,11 @@ class ContactsPanel extends HTMLElement {
 
     }
     _animationDel(event) {
-        this.$createButton.style.animation = '';
+        this.$createButton.classList.remove('pulse');
     }
     _createChat(event) {
         const button = this.$createButton;
-        this.$createButton.style.animation = 'pulse 1s linear';
+        this.$createButton.classList.add('pulse');
         const name = 'Name';
         let uid = null;
         if ((nameArray = localStorage.getItem('nameArray')) == null) {
@@ -220,13 +226,13 @@ class ContactsPanel extends HTMLElement {
         }
         localStorage.setItem('nameArray', JSON.stringify(nameArray));
         const chatBubble = document.createElement('chat-bubble');
-        chatBubble.$avatar.style.backgroundImage = 'url(src/default.png)';
+        chatBubble.$avatar.style.backgroundImage = 'url(src/default.svg)';
         chatBubble.$name.innerText = name;
         chatBubble.$uid.innerText = uid;
         chatBubble.$text.innerText = '';
         chatBubble.$date.innerText = '--:--';
         this.$container.appendChild(chatBubble);
-        chatBubble.style.animation = 'show 1s linear';
+        chatBubble.classList.add('show');
     }
     _onClick(event) {
         if (this.$searchHidden === true) {
@@ -234,7 +240,7 @@ class ContactsPanel extends HTMLElement {
             form.className = 'inputForm';
             const search = document.createElement('input');
             search.type = 'text';
-            form.style.animation = 'show 1s, ease-out';
+            form.classList.add('show');
             search.placeholder = 'Поиск...';
             search.className = 'searchInput';
             this.$head.insertBefore(form, this.$button);

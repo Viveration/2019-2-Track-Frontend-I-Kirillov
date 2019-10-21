@@ -16,6 +16,7 @@ template.innerHTML = `
             display: flex;
             flex-flow: row nowrap;
             align-items: flex-end;
+            animation: show 0.5s linear;
         }
         .chat {
             width: 100%;
@@ -111,10 +112,10 @@ class MessageForm extends HTMLElement {
             localStorage.setItem('nameArray', '');
             nameArray = [];
             nameArray.push(JSON.stringify(nameUid));
-            /* if (uid === 0) {
+            if (uid === 0) {
                 nameArray.push(JSON.stringify(['Геннадий Горин', 1]));
                 nameArray.push(JSON.stringify(['Супер Сус', 2]));
-            } */
+            }
             localStorage.setItem('nameArray', JSON.stringify(nameArray));
         }
 
@@ -161,7 +162,7 @@ class MessageForm extends HTMLElement {
                 }
             }
         }
-        newMessage.style.animation = 'show 1s linear';
+        // newMessage.style.animation = 'show 1s linear';
         this.$chat.insertBefore(newMessage, this._shadowRoot.querySelector('message-bubble'));
 
     }

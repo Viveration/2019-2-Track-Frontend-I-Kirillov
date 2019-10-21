@@ -2,12 +2,6 @@ html {
     box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
 body {
     margin: 0;
     background-color: rgb(0, 0, 0, 0.08);
@@ -37,7 +31,9 @@ contacts-panel {
         opacity: 0;
     }
 }
-
+.fadeAway {
+    animation: disappear 0.5s ease-out;
+}
 .whole-page {
 	position: relative;
 	overflow: hidden;

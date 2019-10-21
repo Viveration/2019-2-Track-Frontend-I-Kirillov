@@ -75,7 +75,12 @@ template.innerHTML = `
                 opacity: 0;
             }
         }
-
+        .fadeAway {
+            animation: disappear 0.5s ease-out;
+        }
+        .unclickable {
+            pointer-events: none;
+        }
     </style>
     <panel>
         <div class = "contacts">
@@ -168,13 +173,13 @@ class TopPanel extends HTMLElement {
             if (nameArray === null) {
                 this.$page = contactMenu;
                 this.$page.addEventListener('animationend', this._animationEnd.bind(this));
-                this.$page.style.animation = 'disappear 1s, linear';
+                this.$page.classList.add('fadeAway');
                 this.$contactsHidden = true;
             }
             if (nameArray === '') {
                 this.$page = contactMenu;
                 this.$page.addEventListener('animationend', this._animationEnd.bind(this));
-                this.$page.style.animation = 'disappear 1s, linear';
+                this.$page.classList.add('fadeAway');
                 this.$contactsHidden = true;
             }
             nameArray = JSON.parse(nameArray);
@@ -201,19 +206,21 @@ class TopPanel extends HTMLElement {
                 
                 chatBubble.$uid.innerText = nameUid[1];
                 if (nameUid[1] === Number(this.$uid.innerText)) {
-                    chatBubble.style.backgroundColor = '#FF99FF';
+                    chatBubble.classList.add('currentChat');
                 }
                 contactMenu.$container.appendChild(chatBubble);
             }
             this.$page = contactMenu;
             this.$page.addEventListener('animationend', this._animationEnd.bind(this));
         } else {
-            this.$page.style.animation = 'disappear 1s, linear';
+            this.$page.classList.add('fadeAway');
+            this.$contacts.classList.add('unclickable');
             this.$contactsHidden = true;
         }
     }
     _animationEnd(event) {
         this.$page.remove();
+        this.$contacts.classList.remove('unclickable');
     }
 }
 

@@ -52,6 +52,9 @@ template.innerHTML = `
             background-color: rgb(0, 0, 0, 0.08);
             border-radius: 5px;
         }
+        .clicked {
+            animation: clickAnimation 1s ease-in;
+        }
     </style>
     <div class = inp>
         <input type="text">
@@ -87,14 +90,11 @@ class FormInput extends HTMLElement {
         this.$myButton.addEventListener('animationend', this._animationDel.bind(this));
     }
     _animationDel(event) {
-        this.$myButton.style.animation = '';
+        this.$myButton.classList.remove('clicked');
     }
     _onClick (event) {
         this.$myButton.dispatchEvent(new Event('onClick'));
-        this.$myButton.style.animation = 'clickAnimation 1s ease-in';
-    }
-    static get observedAttributes() {
-        return ['name', 'value', 'placeholder', 'disabled'];
+        this.$myButton.classList.add('clicked');
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
