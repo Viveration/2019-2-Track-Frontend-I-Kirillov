@@ -160,7 +160,7 @@ class ChatBubble extends HTMLElement {
     _onClick(event) {
         const chats = this.$parent.$container.querySelectorAll('chat-bubble');
         // for (const chat of chats) {
-         //   if (Number(chat.$))
+        //   if (Number(chat.$))
         // }
         for (let i = 0; i < chats.length; i++) {
             if (Number(chats[i].$uid.innerText) === this.$parent.$activeChatUid) {
