@@ -166,10 +166,16 @@ class TopPanel extends HTMLElement {
             menuElement.appendChild(contactMenu);
             let nameArray = localStorage.getItem('nameArray');
             if (nameArray === null) {
-                return;
+                this.$page = contactMenu;
+                this.$page.addEventListener('animationend', this._animationEnd.bind(this));
+                this.$page.style.animation = 'disappear 1s, linear';
+                this.$contactsHidden = true;
             }
             if (nameArray === '') {
-                return;
+                this.$page = contactMenu;
+                this.$page.addEventListener('animationend', this._animationEnd.bind(this));
+                this.$page.style.animation = 'disappear 1s, linear';
+                this.$contactsHidden = true;
             }
             nameArray = JSON.parse(nameArray);
             let nameUid = [];
@@ -199,7 +205,7 @@ class TopPanel extends HTMLElement {
                 }
                 contactMenu.$container.appendChild(chatBubble);
             }
-            this.$page = document.querySelector('.whole-page').querySelector('contacts-panel');
+            this.$page = contactMenu;
             this.$page.addEventListener('animationend', this._animationEnd.bind(this));
         } else {
             this.$page.style.animation = 'disappear 1s, linear';
