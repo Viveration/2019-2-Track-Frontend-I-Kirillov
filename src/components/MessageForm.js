@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import FormInput from './FormInput';
 import MessageBubble from './MessageBubble';
@@ -6,7 +6,7 @@ import styles from '../styles/MessageFormStyles.module.css';
 
 export default function MessageForm(props) {
 	const display = [{ display: 'none' }, { display: 'flex' }];
-
+	const chatRef = React.createRef();
 	const [inputValue, setInputValue] = useState('');
 	const [messag, setMessages] = useState(messagesInit());
 
@@ -24,6 +24,15 @@ export default function MessageForm(props) {
 		setInputValue('');
 		const Arr = createMessage();
 		addMessage(Arr);
+	}
+	useEffect(() => {
+		scroller();
+	});
+	function scroller() {
+		const chat = chatRef.current;
+		setTimeout(() => {
+			chat.scrollTop = 9999;
+		}, 0);
 	}
 
 	function messagesInit() {
@@ -56,13 +65,13 @@ export default function MessageForm(props) {
         const Minutes = Data.getMinutes();
         let mes = localStorage.getItem(props.chatId);
         let key = 0;
-        if (!(mes == '' || mes === null)) {
+        if (!(mes === '' || mes === null)) {
         	key = JSON.parse(mes).length;
         }
         const value = inputValue;
         const data = String(Hour) + ':' + String(Minutes);
 
-	 	if(mes == null || mes == '') {
+	 	if(mes === null || mes === '') {
 	 		mes = [];
 	 	} else {
 	 		mes = JSON.parse(mes);
@@ -88,7 +97,7 @@ export default function MessageForm(props) {
 	return (
 		<div className={styles.messageForm} style={display[props.isChatOpen]}>
 			<div className={styles.formChat} onSubmit={handleSubmit}>
-				<div className={styles.chat}>
+				<div className={styles.chat} ref={chatRef}>
 					{messag}
 				</div>
 				<FormInput

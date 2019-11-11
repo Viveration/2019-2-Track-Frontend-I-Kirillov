@@ -8,6 +8,7 @@
             background-color: rgba(142, 36, 170, 0.15);
             border-radius: 20px;
             margin-bottom: 20px;
+            animation: show 0.5s linear;
         }
 .bubble {
             width: 100%;
@@ -30,4 +31,14 @@
             height: 15px;
             margin-bottom: 5px;
             padding-right: 5px;
+        }
+        @keyframes show {
+            from {
+                transform: scale(0.001);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }

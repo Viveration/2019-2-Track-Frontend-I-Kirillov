@@ -53,42 +53,18 @@
             padding: 5px;
             background-color: inherit;
             border: none;
+            outline: none;
         }
-        .contacts:hover {
+        .contactsButton:hover {
             background-color: rgba(0, 0, 0, 0.08);
         }
-        .contacts:active {
+        .contactsButton:active {
             background-color: #990099;
         }
         .menuButton {
             margin-right: 10px;
             height: 40px;
             width: 40px;
-        }
-        @keyframes disappear {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
-        }
-        .fadeAway {
-            animation: disappear 0.5s ease-out;
-        }
-        .unclickable {
-            pointer-events: none;
-        }
-
-
-
-@keyframes show {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
         }
         .contacts {
             display: flex;
@@ -159,15 +135,6 @@
         .searchButton:active {
             background-color: #990099;
         }
-
-        @keyframes showC {
-            from {
-                margin-bottom: 200%;
-            }
-            to {
-                margin-bottom: 0px;
-            }
-        }
         chat-bubble {
             width: 100%;
             border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
@@ -175,9 +142,8 @@
         .pulse {
             animation: pulse 1s linear;
         }
-        .show {
-            animation: show 0.5s linear;
-        }
+
+
         .chatHead {
             display: flex;
             background-color: #8E24AA;
@@ -188,3 +154,4 @@
             justify-content: flex-start;
             align-items: center;
         }
+        
