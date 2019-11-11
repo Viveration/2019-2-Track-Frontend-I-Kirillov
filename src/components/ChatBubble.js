@@ -6,6 +6,7 @@ import styles from '../styles/ChatBubbleStyles.module.css';
 export default function ChatBubble(props) {
 	return (
 		<div
+			role="button"
 			id={props.id}
 			className={styles.chatBubble}
 			onClick={props.onClickFunc}

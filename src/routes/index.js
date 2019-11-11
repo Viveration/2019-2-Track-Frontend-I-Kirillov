@@ -8,9 +8,9 @@ export const history = createBrowserHistory();
 function Routes() {
 	return (
 		<Router history={history}>
-				<Switch>
-					<Route path="/" component={MessengerContainer} />
-				</Switch>
+			<Switch>
+				<Route path="/" component={MessengerContainer} />
+			</Switch>
 		</Router>
 	);
 }

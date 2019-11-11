@@ -1,99 +1,97 @@
-      
-        @keyframes slide {
-            from {
-                background-color: rgba(0, 0, 0, 0.08);
-            }
-            
-            to {
-                background-color: #FF99FF;
-            }
-        }
-        .chatBubble {
-            width: 100%;
-            display: flex;
-            border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
-            flex-flow: row nowrap;
-        }
-        .MainPart {
-            display: flex;
-            width: calc(100% - 80px);
-            height: 80px;
-            flex-flow: column nowrap;
-            justify-content: flex-start;
-        }
-        .NameAndDate {
-            margin-top: 5px;
-            width: 100%;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: flex-start;
-            align-items: center;
-            flex-basis: content;
-            margin-bottom: 10px;
-        }
-        .ContactName {
-            margin-left: 10px;
-            margin-right: auto;
-            overflow: hidden;
-            min-width: 100px;
-            flex-basis: content;
-            color: #000000;
-            white-space: nowrap;
-            font-family: helvetica;
-            text-align: left;
-            font-size: 20px;
-            height: 100%;
-        }
-        .ContactDate {
-            margin-right: 10px;
-            margin-left: 10px;
-            overflow: hidden;
-            flex-basis: content;
-            min-width: 52px;
-            color: rgba(0, 0, 0, 0.5);
-            white-space: nowrap;
-            font-family: helvetica;
-            text-align: left;
-            font-size: 20px;
-            height: 100%;
-        }
-        .TextAndCheck {
-            width: 100%;
-            margin-bottom: 10px;
-            flex-basis: content;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: flex-start;
-            align-items: center;
-        }
-        .ContactText {
-            margin-left: 10px;
-            margin-right: auto;
-            width: 80%;
-            overflow: hidden;
-            color: rgba(0, 0, 0, 0.6);
-            white-space: nowrap;
-            font-family: helvetica;
-            text-align: left;
-            font-size: 18px;
-        }
-        svg {
-            fill: #0033CC;
-        }
-        .ContactCheck {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
-        .contactAvatar {
-            margin-top: 5px;
-            margin-left: 5px;
-            width: 70px;
-            height: 70px;
-            border-radius: 35px;
-            background-color: black;
-        }
-        .currentChat {
-            animation: 'slide 0.5s linear';
-            background-color: #FF99FF;
-        }
+@keyframes slide {
+  from {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+  to {
+    background-color: #FF99FF;
+  }
+}
+.chatBubble {
+  width: 100%;
+  display: flex;
+  border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
+  flex-flow: row nowrap;
+}
+.MainPart {
+  display: flex;
+  width: calc(100% - 80px);
+  height: 80px;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+    }
+.NameAndDate {
+  margin-top: 5px;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  flex-basis: content;
+  margin-bottom: 10px;
+}
+.ContactName {
+  margin-left: 10px;
+  margin-right: auto;
+  overflow: hidden;
+  min-width: 100px;
+  flex-basis: content;
+  color: #000000;
+  white-space: nowrap;
+  font-family: helvetica;
+  text-align: left;
+  font-size: 20px;
+  height: 100%;
+}
+.ContactDate {
+  margin-right: 10px;
+  margin-left: 10px;
+  overflow: hidden;
+  flex-basis: content;
+  min-width: 52px;
+  color: rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  font-family: helvetica;
+  text-align: left;
+  font-size: 20px;
+  height: 100%;
+}
+.TextAndCheck {
+  width: 100%;
+  margin-bottom: 10px;
+  flex-basis: content;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.ContactText {
+  margin-left: 10px;
+  margin-right: auto;
+  width: 80%;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  font-family: helvetica;
+  text-align: left;
+  font-size: 18px;
+}
+svg {
+  fill: #0033CC;
+}
+.ContactCheck {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.contactAvatar {
+  margin-top: 5px;
+  margin-left: 5px;
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  background-color: black;
+}
+.currentChat {
+  animation: 'slide 0.5s linear';
+  background-color: #FF99FF;
+}

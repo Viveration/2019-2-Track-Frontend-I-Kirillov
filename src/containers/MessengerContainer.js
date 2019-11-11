@@ -12,7 +12,7 @@ export default class MessengerContainer extends React.Component {
 		this.handleShowFunc = this.handleShowFunc.bind(this);
 		this.state = {
 			isChatOpen: 0,
-			contact: "Name",
+			contact: 'Name',
 			messageForm: '',
 			contactsPanel: <ContactsPanel isChatOpen={0} openChatFunc={this.handleChat} />,
 		};

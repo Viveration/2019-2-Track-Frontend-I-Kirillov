@@ -42,12 +42,12 @@ export default function MessageForm(props) {
 			messages = JSON.parse(mess);
 		}
 		const messagesInitArray = [];
-		for (let i = 0; i < messages.length; i++) {
-			let messageArr = [
+		for (let i = 0; i < messages.length; i += 1) {
+			const messageArr = [
 				i,
 				JSON.parse(messages[i])[0],
 				JSON.parse(messages[i])[1],
-			]
+			];
 			messagesInitArray.push(
 				<MessageBubble
 					key={messageArr[0]}
@@ -61,24 +61,24 @@ export default function MessageForm(props) {
 
 	function createMessage() {
 		const Data = new Date();
-        const Hour = Data.getHours();
-        const Minutes = Data.getMinutes();
-        let mes = localStorage.getItem(props.chatId);
-        let key = 0;
-        if (!(mes === '' || mes === null)) {
-        	key = JSON.parse(mes).length;
-        }
-        const value = inputValue;
-        const data = String(Hour) + ':' + String(Minutes);
+		const Hour = Data.getHours();
+		const Minutes = Data.getMinutes();
+		let mes = localStorage.getItem(props.chatId);
+		let key = 0;
+		if (!(mes === '' || mes === null)) {
+			key = JSON.parse(mes).length;
+		}
+		const value = inputValue;
+		const data = String(Hour) + ':' + String(Minutes);
 
-	 	if(mes === null || mes === '') {
-	 		mes = [];
-	 	} else {
-	 		mes = JSON.parse(mes);
-	 	}
-	 	const newMes = [data, value];
-	 	mes.push(JSON.stringify(newMes));
-	 	localStorage.setItem(props.chatId, JSON.stringify(mes));
+		if(mes === null || mes === '') {
+			mes = [];
+		} else {
+			mes = JSON.parse(mes);
+		}
+		const newMes = [data, value];
+		mes.push(JSON.stringify(newMes));
+		localStorage.setItem(props.chatId, JSON.stringify(mes));
 		return [key, value, data];
 	}
 
