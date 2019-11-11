@@ -130,6 +130,7 @@ bower_components/
 *.log
 
 dist/
+build/
 
 #### eslint ####
 # These rules are required to lint .eslintrc.js and friends.
@@ -140,8 +141,6 @@ dist/
 
 #### custom ####
 flow-typed/
-web-components/false
-web-components/build
 .nuxt/
 .nuxt/*
 docs/_book/
