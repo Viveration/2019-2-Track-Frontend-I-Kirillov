@@ -42,7 +42,6 @@ export default class MessengerContainer extends React.Component {
 				<MessageForm
 					isChatOpen={1}
 					chatId={Number(openedChatId)}
-					nameArray='nameArray'
 				/>
 			),
 		});
@@ -50,10 +49,10 @@ export default class MessengerContainer extends React.Component {
 	}
 
 	handleShowFunc(event) {
-		this.setState({ contact: 'Contact name' });
+		this.setState({ contact: 'Name' });
 		this.setState({ isChatOpen: 0 });
 		this.setState({
-			ContactsPanel: <ContactsPanel isChatOpen={0} openChatFunc={this.handleChat} />,
+			contactsPanel: <ContactsPanel isChatOpen={0} openChatFunc={this.handleChat} />,
 		});
 		this.setState({ messageForm: '' });
 	}

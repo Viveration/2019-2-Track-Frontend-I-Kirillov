@@ -178,3 +178,13 @@
         .show {
             animation: show 0.5s linear;
         }
+        .chatHead {
+            display: flex;
+            background-color: #8E24AA;
+            width: 100%;
+            min-width: 250px;
+            height: 50px;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: center;
+        }

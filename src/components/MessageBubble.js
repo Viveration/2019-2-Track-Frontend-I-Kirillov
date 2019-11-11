@@ -5,8 +5,8 @@ import styles from '../styles/MessageBubbleStyles.module.css';
 export default function MessageBubble(props) {
 	return (
 		<div className={`${styles.main}`}>
-			<div className={styles.bubble}>{props.messageText}</div>
-			<div className={styles.date}>{props.messageTime}</div>
+			<div className={styles.bubble}>{props.Text}</div>
+			<div className={styles.date}>{props.Time}</div>
 		</div>
 	);
 }

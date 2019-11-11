@@ -6,14 +6,13 @@ import styles from '../styles/MessageFormStyles.module.css';
 
 export default function MessageForm(props) {
 	const display = [{ display: 'none' }, { display: 'flex' }];
-	let messagesCount = 0;
+
 	const [inputValue, setInputValue] = useState('');
 	const [messages, setMessages] = useState(messagesInit());
 
 	function handleChange(event) {
 		const { value } = event.target;
 		setInputValue(value);
-		messagesCount += 1;
 
 	}
 
@@ -23,20 +22,24 @@ export default function MessageForm(props) {
 			return;
 		}
 		setInputValue('');
-		const Obj = createMessage();
-		addMessage(Obj);
+		const Arr = createMessage();
+		addMessage(Arr);
 	}
 
 	function messagesInit() {
-		const messages = JSON.parse(props.chatId);
+		const mess = localStorage.getItem(props.chatId);
+		let messages = [];
+		if (!(mess === '' || mess === null)){
+			messages = JSON.parse(mess);
+		}
 		const messagesInitArray = [];
 		for (let i = 0; i < messages.length; i++) {
-			let messageObj = {
-				Time: JSON.parse(messages[i])[0],
-				Text: JSON.parse(messages[i])[1],
-				key: messagesCount,
-			}
-			addMessage(messageObj);
+			let messageArr = [
+				i,
+				JSON.parse(messages[i])[0],
+				JSON.parse(messages[i])[1],
+			]
+			addMessage(messageArr);
 		}
 		return messagesInitArray;
 	}
@@ -45,31 +48,32 @@ export default function MessageForm(props) {
 		const Data = new Date();
         const Hour = Data.getHours();
         const Minutes = Data.getMinutes();
-        mes = localStorage.getItem(props.chatId);
-		const messageObj = {
-			key: messagesCount,
-			Text: inputValue,
-			Time: String(Hour) + ':' + String(Minutes),
-		};
-	 	let mes = localStorage.getItem(props.chatId);
+        let mes = localStorage.getItem(props.chatId);
+        let key = 0;
+        if (!(mes == '' || mes === null)) {
+        	key = JSON.parse(mes).length;
+        }
+        const value = inputValue;
+        const data = String(Hour) + ':' + String(Minutes);
+
 	 	if(mes == null || mes == '') {
 	 		mes = [];
 	 	} else {
 	 		mes = JSON.parse(mes);
 	 	}
-	 	const newMes = [messageObj.Time, messageObj.Text];
+	 	const newMes = [data, value];
 	 	mes.push(JSON.stringify(newMes));
 	 	localStorage.setItem(props.chatId, JSON.stringify(mes));
-		return messageObj;
+		return [key, value, data];
 	}
 
-	function addMessage(messageObj) {
+	function addMessage(messageArr) {
 		setMessages(
 			messages.concat(
 				<MessageBubble
-					key = {messageObj.key}
-					messageText={messageObj.Text}
-					messageTime={messageObj.Time}
+					key = {messageArr[0]}
+					Text={messageArr[1]}
+					Time={messageArr[2]}
 				/>,
 			),
 		);

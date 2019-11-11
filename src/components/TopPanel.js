@@ -64,7 +64,7 @@ export default function TopPanel(props) {
 				</button>
 				<div className={styles.profileAvatar}></div>
 				<div className={styles.profileInformation}>
-					<div className={styles.profileName}>{props.profileName}</div>
+					<div className={styles.profileName}>{props.contact}</div>
 					<div className={styles.profileActivity}>Был 228 минут назад</div>
 				</div>
 				<div className={styles.menuButton}>
