@@ -8,7 +8,7 @@ export default function MessageForm(props) {
 	const display = [{ display: 'none' }, { display: 'flex' }];
 
 	const [inputValue, setInputValue] = useState('');
-	const [messages, setMessages] = useState(messagesInit());
+	const [messag, setMessages] = useState(messagesInit());
 
 	function handleChange(event) {
 		const { value } = event.target;
@@ -39,7 +39,13 @@ export default function MessageForm(props) {
 				JSON.parse(messages[i])[0],
 				JSON.parse(messages[i])[1],
 			]
-			addMessage(messageArr);
+			messagesInitArray.push(
+				<MessageBubble
+					key={messageArr[0]}
+					Text={messageArr[2]}
+					Time={messageArr[1]}
+				/>,
+			);
 		}
 		return messagesInitArray;
 	}
@@ -69,7 +75,7 @@ export default function MessageForm(props) {
 
 	function addMessage(messageArr) {
 		setMessages(
-			messages.concat(
+			messag.concat(
 				<MessageBubble
 					key = {messageArr[0]}
 					Text={messageArr[1]}
@@ -83,7 +89,7 @@ export default function MessageForm(props) {
 		<div className={styles.messageForm} style={display[props.isChatOpen]}>
 			<div className={styles.formChat} onSubmit={handleSubmit}>
 				<div className={styles.chat}>
-					{messages}
+					{messag}
 				</div>
 				<FormInput
 					placeholder="Сообщение"
