@@ -5,7 +5,7 @@
   align-items: center;
   height: 50px;
   width: 100%;
-  background-color: #8E24AA;
+  background-color: #8e24aa;
 }
 .profileInformation {
   overflow: hidden;
@@ -18,7 +18,7 @@
   width: 100%;
   overflow: hidden;
   flex-basis: content;
-  color: #FFFFFF;
+  color: #ffffff;
   white-space: nowrap;
   font-family: helvetica;
   text-align: left;
@@ -43,8 +43,7 @@
   margin-left: 20px;
   height: 46px;
   width: 46px;
-  border-radius: 20px;
-  background-color: black;
+  border-radius: 23px;
   background-size: cover;
 }
 .contactsButton {
@@ -91,7 +90,7 @@
 }
 .contactsHead {
   display: flex;
-  background-color: #8E24AA;
+  background-color: #8e24aa;
   width: 100%;
   min-width: 250px;
   height: 50px;
@@ -101,7 +100,7 @@
 }
 @keyframes headSlide {
   from {
-    margin-bottom: 100%
+    margin-bottom: 100%;
   }
   to {
     margin-bottom: 0px;
@@ -115,7 +114,7 @@
   margin-right: auto;
   flex-basis: content;
   overflow: hidden;
-  color: #FFFFFF;
+  color: #ffffff;
   white-space: nowrap;
   font-family: helvetica;
   text-align: center;
@@ -145,7 +144,7 @@ chat-bubble {
 
 .chatHead {
   display: flex;
-  background-color: #8E24AA;
+  background-color: #8e24aa;
   width: 100%;
   min-width: 250px;
   height: 50px;

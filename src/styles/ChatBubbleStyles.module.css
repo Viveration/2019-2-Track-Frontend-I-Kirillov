@@ -1,24 +1,36 @@
 @keyframes slide {
   from {
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: #fff;
   }
   to {
-    background-color: #FF99FF;
+    background-color: #ff99ff;
   }
 }
+
 .chatBubble {
   width: 100%;
   display: flex;
   border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
   flex-flow: row nowrap;
 }
+
+.chatBubble:hover {
+  animation: slide 0.3s linear;
+  background-color: #ff99ff;
+}
+
+.chatBubble:active {
+  background-color: #e856e8;
+}
+
 .MainPart {
   display: flex;
   width: calc(100% - 80px);
   height: 80px;
   flex-flow: column nowrap;
   justify-content: flex-start;
-    }
+}
+
 .NameAndDate {
   margin-top: 5px;
   width: 100%;
@@ -29,6 +41,7 @@
   flex-basis: content;
   margin-bottom: 10px;
 }
+
 .ContactName {
   margin-left: 10px;
   margin-right: auto;
@@ -42,6 +55,7 @@
   font-size: 20px;
   height: 100%;
 }
+
 .ContactDate {
   margin-right: 10px;
   margin-left: 10px;
@@ -55,6 +69,7 @@
   font-size: 20px;
   height: 100%;
 }
+
 .TextAndCheck {
   width: 100%;
   margin-bottom: 10px;
@@ -64,6 +79,7 @@
   justify-content: flex-start;
   align-items: center;
 }
+
 .ContactText {
   margin-left: 10px;
   margin-right: auto;
@@ -75,23 +91,26 @@
   text-align: left;
   font-size: 18px;
 }
+
 svg {
-  fill: #0033CC;
+  fill: #0033cc;
 }
+
 .ContactCheck {
   width: 30px;
   height: 30px;
   margin-right: 10px;
 }
+
 .contactAvatar {
   margin-top: 5px;
   margin-left: 5px;
   width: 70px;
   height: 70px;
   border-radius: 35px;
-  background-color: black;
 }
+
 .currentChat {
   animation: 'slide 0.5s linear';
-  background-color: #FF99FF;
+  background-color: #ff99ff;
 }

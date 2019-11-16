@@ -10,6 +10,7 @@
   margin-bottom: 20px;
   animation: show 0.5s linear;
 }
+
 .bubble {
   width: 100%;
   flex-basis: content;
@@ -26,7 +27,7 @@
   color: rgba(0, 0, 0, 0.87);
   flex-basis: content;
   font-family: century gothic;
-  text-align: right; 
+  text-align: right;
   font-size: 15px;
   height: 15px;
   margin-bottom: 5px;
