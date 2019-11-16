@@ -149,3 +149,5 @@ jest_*/
 web-components/false
 web-componenst/build
 build/
+build/favicon.ico
+build/manifest.json
