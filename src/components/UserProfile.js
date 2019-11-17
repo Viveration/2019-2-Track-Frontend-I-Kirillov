@@ -23,7 +23,7 @@ export default function UserProfile(props) {
 		information = profile[2];
 	}
 	useEffect(() => {
-		if (values !== 1 && values !== 2) setValue(0);
+		if (values !== 1 && values !== 2 && values !== 0) setValue(0);
 	});
 
 	function handleFocus(event) {
