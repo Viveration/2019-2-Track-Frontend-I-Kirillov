@@ -1,19 +1,19 @@
 language: node_js
 node_js:
-  - 'stable'
+    - 'stable'
 cache:
-  directories:
-    - node_modules
+    directories:
+        - node_modules
 script:
-  - npm run test
-  - npm run build
+    - npm run test
+    - npm run build
 
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $repo_token
-  local_dir: build
-  on:
-    branch:
-      - master
-      - lesson5
+    provider: pages
+    skip_cleanup: true
+    github_token: $repo_token
+    local_dir: build
+    on:
+        branch:
+            - master
+            - lesson_6
