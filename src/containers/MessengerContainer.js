@@ -1,8 +1,10 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import TopPanel from '../components/TopPanel';
 import ContactsPanel from '../components/ContactsPanel';
 import MessageForm from '../components/MessageForm';
 import '../styles/globalStyles.css';
+import UserProfile from '../components/UserProfile';
 import bubbleStyles from '../styles/ChatBubbleStyles.module.css';
 
 export default class MessengerContainer extends React.Component {
@@ -38,12 +40,7 @@ export default class MessengerContainer extends React.Component {
 
 		this.setState({ isChatOpen: 1 });
 		this.setState({
-			messageForm: (
-				<MessageForm
-					isChatOpen={1}
-					chatId={Number(openedChatId)}
-				/>
-			),
+			messageForm: <MessageForm isChatOpen={1} chatId={Number(openedChatId)} />,
 		});
 		this.setState({ contactsPanel: '' });
 	}
@@ -59,14 +56,23 @@ export default class MessengerContainer extends React.Component {
 
 	render() {
 		return (
-			<div className='main'>
-				<TopPanel
-					isChatOpen={this.state.isChatOpen}
-					contact={this.state.contact}
-					showFunc={this.handleShowFunc}
-				/>
-				{this.state.contactsPanel}
-				{this.state.messageForm}
+			<div className="main">
+				<Switch>
+					<Route path="/userprofile">
+						<div className="userprofile">
+							<UserProfile />
+						</div>
+					</Route>
+					<Route path="/">
+						<TopPanel
+							isChatOpen={this.state.isChatOpen}
+							contact={this.state.contact}
+							showFunc={this.handleShowFunc}
+						/>
+						{this.state.contactsPanel}
+						{this.state.messageForm}
+					</Route>
+				</Switch>
 			</div>
 		);
 	}

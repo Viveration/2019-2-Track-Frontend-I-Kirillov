@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styles from '../styles/TopPanelStyles.module.css';
 
 export default function TopPanel(props) {
@@ -7,21 +8,23 @@ export default function TopPanel(props) {
 	return (
 		<div className={styles.panel}>
 			<div className={styles.contactsHead} style={display[(props.isChatOpen + 1) % 2]}>
-				<button type="button" className={`${styles.contactsButton}`} onClick={props.showFunc}>
-					<svg x="0px" y="0px" viewBox="0 0 60.123 60.123">
-						<g fill="#FFFFFF">
-							<path d="M57.124,51.893H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,51.893,57.124,51.893z" />
-							<path
-								d="M57.124,33.062H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3
-								C60.124,31.719,58.781,33.062,57.124,33.062z"
-							/>
-							<path d="M57.124,14.231H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,14.231,57.124,14.231z" />
-							<circle cx="4.029" cy="11.463" r="4.029" />
-							<circle cx="4.029" cy="30.062" r="4.029" />
-							<circle cx="4.029" cy="48.661" r="4.029" />
-						</g>
-					</svg>
-				</button>
+				<Link to={'/userprofile'}>
+					<button type="button" className={`${styles.contactsButton}`} onClick={props.showFunc}>
+						<svg x="0px" y="0px" viewBox="0 0 60.123 60.123">
+							<g fill="#FFFFFF">
+								<path d="M57.124,51.893H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,51.893,57.124,51.893z" />
+								<path
+									d="M57.124,33.062H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3
+									C60.124,31.719,58.781,33.062,57.124,33.062z"
+								/>
+								<path d="M57.124,14.231H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,14.231,57.124,14.231z" />
+								<circle cx="4.029" cy="11.463" r="4.029" />
+								<circle cx="4.029" cy="30.062" r="4.029" />
+								<circle cx="4.029" cy="48.661" r="4.029" />
+							</g>
+						</svg>
+					</button>
+				</Link>
 				<div className={styles.logo}>Messenger</div>
 				<div className={styles.searchButton}>
 					<svg viewBox="0 0 512 512" width="30px" height="30px">
@@ -38,23 +41,25 @@ export default function TopPanel(props) {
 					</svg>
 				</div>
 			</div>
-
 			<div className={styles.chatHead} style={display[props.isChatOpen]}>
-				<button type="button" className={`${styles.contactsButton}`} onClick={props.showFunc}>
-					<svg x="0px" y="0px" viewBox="0 0 60.123 60.123">
-						<g fill="#FFFFFF">
-							<path d="M57.124,51.893H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,51.893,57.124,51.893z" />
-							<path
-								d="M57.124,33.062H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3
-								C60.124,31.719,58.781,33.062,57.124,33.062z"
-							/>
-							<path d="M57.124,14.231H16.92c-1.657,0-3-1.343-3-3s1.343-3,3-3h40.203c1.657,0,3,1.343,3,3S58.781,14.231,57.124,14.231z" />
-							<circle cx="4.029" cy="11.463" r="4.029" />
-							<circle cx="4.029" cy="30.062" r="4.029" />
-							<circle cx="4.029" cy="48.661" r="4.029" />
-						</g>
-					</svg>
-				</button>
+				<Link to={'/chatlist'}>
+					<button type="button" className={`${styles.contactsButton}`} onClick={props.showFunc}>
+						<svg x="0px" y="0px" viewBox="0 0 492 492" width="40px" height="40px">
+							<g>
+								<g fill="#FFF">
+									<path
+										d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+										c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+										L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+										c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+										c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+										C492,219.198,479.172,207.418,464.344,207.418z"
+									/>
+								</g>
+							</g>
+						</svg>
+					</button>
+				</Link>
 				<div className={styles.profileAvatar}>
 					<svg x="0px" y="0px" viewBox="0 0 1000 1000" width="46px" heigth="46px">
 						<g fill="#8E24AA">
