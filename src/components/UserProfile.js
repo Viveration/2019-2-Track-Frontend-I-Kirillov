@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/UserProfileStyles.module.css';
 
 export default function UserProfile(props) {
-	const [value, setValue] = useState('hint');
+	const [values, setValue] = useState('hint');
 	const hintpool = ['Minimum length is 5 characters', 'Invalid name!', 'Good name!'];
 	const inf = React.createRef();
 	const un = React.createRef();
@@ -23,12 +23,12 @@ export default function UserProfile(props) {
 		information = profile[2];
 	}
 	useEffect(() => {
-		if (value !== 1 && value !== 2) setValue(0);
+		if (values !== 1 && values !== 2) setValue(0);
 	});
 
 	function handleFocus(event) {
-		const { values } = event.target;
-		setInputValue(values);
+		const { value } = event.target;
+		setInputValue(value);
 	}
 	function handleSubmit(event) {
 		event.preventDefault();
@@ -53,15 +53,15 @@ export default function UserProfile(props) {
 		localStorage.setItem('profile', JSON.stringify(profile));
 	}
 	function handleChange(event) {
-		const { values } = event.target;
+		const { value } = event.target;
 		if (event.target.parentElement.className === styles.username)
-			if (values.length < 5) {
+			if (value.length < 5) {
 				setValue(1);
 			} else {
 				setValue(2);
 			}
 
-		setInputValue(values);
+		setInputValue(value);
 	}
 	return (
 		<div className={styles.container}>
@@ -124,7 +124,7 @@ export default function UserProfile(props) {
 						/>
 					</form>
 				</div>
-				<div className={styles.hint}>{hintpool[value]}</div>
+				<div className={styles.hint}>{hintpool[values]}</div>
 				<div className={styles.formcontainer}>
 					<div className={styles.tip}>Bio</div>
 					<form className={styles.information} onSubmit={handleSubmit} ref={inf}>
