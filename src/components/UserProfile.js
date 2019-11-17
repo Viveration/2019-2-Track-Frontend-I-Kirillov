@@ -4,7 +4,7 @@ import styles from '../styles/UserProfileStyles.module.css';
 
 export default function UserProfile(props) {
 	const [values, setValue] = useState('hint');
-	const hintpool = ['Minimum length is 5 characters', 'Invalid name!', 'Good name!'];
+	const hintpool = ['Minimum length is 5 characters', 'Good name!'];
 	const inf = React.createRef();
 	const un = React.createRef();
 	const fn = React.createRef();
@@ -22,9 +22,6 @@ export default function UserProfile(props) {
 		username = profile[0];
 		information = profile[2];
 	}
-	useEffect(() => {
-		if (values !== 1 && values !== 2 && values !== 0) setValue(0);
-	});
 
 	function handleFocus(event) {
 		const { value } = event.target;
@@ -56,9 +53,9 @@ export default function UserProfile(props) {
 		const { value } = event.target;
 		if (event.target.parentElement.className === styles.username)
 			if (value.length < 5) {
-				setValue(1);
+				setValue(0);
 			} else {
-				setValue(2);
+				setValue(1);
 			}
 
 		setInputValue(value);
