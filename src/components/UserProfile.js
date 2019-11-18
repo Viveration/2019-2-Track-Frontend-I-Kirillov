@@ -136,9 +136,7 @@ export default function UserProfile(props) {
 						/>
 					</form>
 				</div>
-				<div className={styles.hint} style={{ marginBottom: '50px' }}>
-					Any details about you
-				</div>
+				<div className={styles.hint}>Any details about you</div>
 			</div>
 		</div>
 	);
