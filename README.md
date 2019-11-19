@@ -1,2 +1,1 @@
-# 2019-2-Track-Frontend-I-Kirillov
-Учебный проект
+# Track Mail 2019 Naval
