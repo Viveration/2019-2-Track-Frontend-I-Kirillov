@@ -1,55 +1,76 @@
 .input {
-  border: 0;
-  background-color: rgba(240, 240, 240);
-  height: 35px;
-  font-size: 18px;
-  font-family: helvetica;
-  width: auto;
-  outline: none;
-  flex-grow: 1;
-  background-color: #FFF;
+	border: 0;
+	background-color: rgba(240, 240, 240);
+	height: 35px;
+	font-size: 18px;
+	font-family: helvetica;
+	width: auto;
+	outline: none;
+	flex-grow: 1;
+	background-color: #fff;
 }
 @keyframes clickAnimation {
-  0% {
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
-  }
-  50% {
-    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.16);
-  }
-  99% {
-    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0)
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
+	0% {
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
+	}
+	50% {
+		box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.16);
+	}
+	99% {
+		box-shadow: 0 0 0 5px rgba(0, 0, 0, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
 }
 .button {
-  fill: currentColor;
-  color: #8E24AA;
-  align-items: center;
-  height: 35px;
-  width: 70px;
-  border: none;
-  margin-left: 10px;
-  border-radius: 15px;
-  font-size: 18px;
-  position: relative;
-  outline: none;
+	fill: currentColor;
+	color: #8e24aa;
+	align-items: center;
+	height: 35px;
+	width: 70px;
+	border: none;
+	margin-left: 10px;
+	border-radius: 15px;
+	font-size: 18px;
+	position: relative;
+	outline: none;
 }
 .button:hover {
-  animation: clickAnimation 2s infinite;
+	animation: clickAnimation 2s infinite;
 }
 .button:active {
-  background-color: #FF99FF;
+	background-color: #ff99ff;
+}
+.sendMessage {
+	fill: #8e24aa;
+	width: 35px;
+	height: 35px;
 }
 .inp {
-  width: calc(100% - 20px);
-  flex-flow: row nowrap;
-  display: flex;
-  align-items: center;
-  height: 50px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: #FFF;
-  border-radius: 5px;
+	width: calc(100% - 20px);
+	flex-flow: row nowrap;
+	display: flex;
+	align-items: center;
+	height: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: #fff;
+	border-radius: 5px;
+}
+.attach {
+	width: 70px;
+	height: 35px;
+	border: none;
+	margin-left: 10px;
+	border-radius: 15px;
+	position: relative;
+	outline: none;
+	background-color: #fff;
+}
+.clip {
+	width: 35px;
+	height: 35px;
+	fill: #cccccc;
+	background-color: #fff;
 }

@@ -15,6 +15,7 @@
 		opacity: 1;
 	}
 }
+
 .chatBubble {
 	width: 100%;
 	display: flex;
@@ -101,8 +102,10 @@
 	font-size: 18px;
 }
 
-svg {
-	fill: #0033cc;
+.check {
+	width: 30px;
+	height: 30px;
+	fill: #33cc33;
 }
 
 .ContactCheck {
@@ -117,4 +120,10 @@ svg {
 	width: 70px;
 	height: 70px;
 	border-radius: 35px;
+}
+
+.profileDefault {
+	width: 70px;
+	height: 70px;
+	fill: #8e24aa;
 }
