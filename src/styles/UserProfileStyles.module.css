@@ -21,10 +21,15 @@
 .userprofileButton {
 	height: 50px;
 	width: 60px;
-	padding: 5px;
 	background-color: inherit;
 	border: none;
 	outline: none;
+}
+
+.backArrow {
+	height: 50px;
+	width: 50px;
+	fill: #fff;
 }
 
 .userprofileButton:hover {
@@ -110,4 +115,10 @@ input {
 	height: 100px;
 	margin-top: 50px;
 	border-radius: 25px;
+}
+
+.profileDefault {
+	width: 100px;
+	height: 100px;
+	fill: #8e24aa;
 }

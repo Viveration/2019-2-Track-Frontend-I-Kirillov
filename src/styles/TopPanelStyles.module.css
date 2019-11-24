@@ -46,6 +46,11 @@
 	border-radius: 23px;
 	background-size: cover;
 }
+.profileDefault {
+	width: 46px;
+	height: 46px;
+	fill: #8e24aa;
+}
 .contactsButton {
 	height: 50px;
 	width: 60px;
@@ -65,6 +70,11 @@
 	height: 40px;
 	width: 40px;
 }
+.menuGear {
+	height: 40px;
+	width: 40px;
+	fill: #fff;
+}
 .contacts {
 	display: flex;
 	overflow: hidden;
@@ -76,6 +86,11 @@
 	justify-content: flex-start;
 	align-items: center;
 	animation: showC 0.5s ease-in;
+}
+.chatlist {
+	height: 50px;
+	width: 50px;
+	fill: #fff;
 }
 @keyframes pulse {
 	0% {
@@ -133,6 +148,11 @@
 }
 .searchButton:active {
 	background-color: #990099;
+}
+.search {
+	height: 30px;
+	width: 30px;
+	fill: #fff;
 }
 chat-bubble {
 	width: 100%;
