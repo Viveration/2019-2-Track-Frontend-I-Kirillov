@@ -83,6 +83,12 @@ export default function MessageForm(props) {
 				console.log(voiceURL);
 				const content = [voiceURL];
 				addMessage(createMessage('Голосовое сообщение', content, 'audio'));
+				const data = new FormData();
+				data.append('audio', blob);
+				fetch('https://tt-front.now.sh/upload', {
+					method: 'POST',
+					body: data,
+				});
 			});
 
 			stop.addEventListener(
