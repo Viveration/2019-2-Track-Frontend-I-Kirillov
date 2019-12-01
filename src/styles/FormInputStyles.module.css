@@ -36,6 +36,9 @@
 	position: relative;
 	outline: none;
 }
+audio {
+	outline: none;
+}
 .button:hover {
 	animation: clickAnimation 2s infinite;
 }

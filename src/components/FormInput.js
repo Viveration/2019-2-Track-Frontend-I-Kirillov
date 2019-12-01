@@ -25,7 +25,7 @@ export default function FormInput(props) {
 				<MicOff className={styles.mic} />
 			</button>
 			<button
-				type="submit"
+				type="button"
 				className={styles.attach}
 				onClick={(e) => {
 					if (img) {
@@ -42,10 +42,10 @@ export default function FormInput(props) {
 				style={{ display: 'none' }}
 				onChange={props.imgAttach}
 			/>
-			<button type="submit" className={styles.attach} onClick={props.geoAttach}>
+			<button type="button" className={styles.attach} onClick={props.geoAttach}>
 				<GeoAttach className={styles.geo} />
 			</button>
-			<button type="submit" className={styles.button} onClick={props.onSubmit}>
+			<button type="button" className={styles.button} onClick={props.onSubmit}>
 				<SendMessage className={styles.sendMessage} />
 			</button>
 		</form>

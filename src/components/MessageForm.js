@@ -228,25 +228,25 @@ export default function MessageForm(props) {
 
 	return (
 		<div className={styles.messageForm} style={display[props.isChatOpen]}>
-			<div
-				className={styles.dropInput}
-				onDragEnter={preventAndStop}
-				onDragOver={preventAndStop}
-				onDrop={handleDrop}>
-				<div className={styles.formChat} onSubmit={handleSubmit}>
+			<div className={styles.formChat} onSubmit={handleSubmit}>
+				<div
+					className={styles.dropInput}
+					onDragEnter={preventAndStop}
+					onDragOver={preventAndStop}
+					onDrop={handleDrop}>
 					<div className={styles.chat} ref={chatRef}>
 						{messag}
 					</div>
-					<FormInput
-						placeholder="Сообщение"
-						value={inputValue}
-						onChange={handleChange}
-						onSubmit={handleSubmit}
-						geoAttach={handleGeo}
-						imgAttach={handleImg}
-						voiceAttach={handleVoice}
-					/>
 				</div>
+				<FormInput
+					placeholder="Сообщение"
+					value={inputValue}
+					onChange={handleChange}
+					onSubmit={handleSubmit}
+					geoAttach={handleGeo}
+					imgAttach={handleImg}
+					voiceAttach={handleVoice}
+				/>
 			</div>
 		</div>
 	);
