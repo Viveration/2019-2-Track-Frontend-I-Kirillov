@@ -21,8 +21,7 @@ export default function MessageForm(props) {
 			return;
 		}
 		setInputValue('');
-		const Arr = createMessage(inputValue, null, 'text');
-		addMessage(Arr);
+		addMessage(createMessage(inputValue, null, 'text'));
 	}
 	useEffect(() => {
 		scroller();
@@ -44,15 +43,13 @@ export default function MessageForm(props) {
 		for (let i = 0; i < messages.length; i += 1) {
 			const messageArr = [i, JSON.parse(messages[i])[0], JSON.parse(messages[i])[1]];
 			if (messageArr[2] !== 'Изображение' && messageArr[2] !== null) {
-				messagesInitArray.push(
-					<MessageBubble
-						key={messageArr[0]}
-						Text={messageArr[2]}
-						Time={messageArr[1]}
-						content={[]}
-						contentType="text"
-					/>,
-				);
+				messagesInitArray.push({
+					key: messageArr[0],
+					Text: messageArr[2],
+					Time: messageArr[1],
+					content: [],
+					contentType: 'text',
+				});
 			}
 		}
 		return messagesInitArray;
@@ -192,36 +189,52 @@ export default function MessageForm(props) {
 			localStorage.setItem(props.chatId, JSON.stringify(mes));
 		}
 		if (type === 'audio') {
-			return [key, value, data, type, content];
+			return { key: key, Text: value, Time: data, contentType: type, content: content };
 		}
-		if (type !== 'img') return [key, value, data, type];
-		return [key, value, data, type, content];
+		if (type !== 'img') return { key: key, Text: value, Time: data, contentType: type };
+		return { key: key, Text: value, Time: data, contentType: type, content: content };
+	}
+	function createRenderMessage(messageDict) {
+		const createdMess = (
+			<MessageBubble
+				key={messageDict.key}
+				Text={messageDict.Text}
+				Time={messageDict.Time}
+				contentType={messageDict.contentType}
+				content={messageDict.content}
+			/>
+		);
+		return createdMess;
+	}
+	function renderMessages() {
+		const renderArray = [];
+		for (let i = 0; i < messag.length; i += 1) {
+			renderArray.push(createRenderMessage(messag[i]));
+		}
+
+		return renderArray;
 	}
 
 	function addMessage(messageArr) {
-		if (messageArr.length === 4) {
+		if (Object.keys(messageArr).length === 4) {
 			setMessages(
-				messag.concat(
-					<MessageBubble
-						key={messageArr[0]}
-						Text={messageArr[1]}
-						Time={messageArr[2]}
-						contentType={messageArr[3]}
-						content={[]}
-					/>,
-				),
+				messag.concat({
+					key: messageArr.key,
+					Text: messageArr.Text,
+					Time: messageArr.Time,
+					contentType: messageArr.contentType,
+					content: [],
+				}),
 			);
 		} else {
 			setMessages(
-				messag.concat(
-					<MessageBubble
-						key={messageArr[0]}
-						Text={messageArr[1]}
-						Time={messageArr[2]}
-						contentType={messageArr[3]}
-						content={messageArr[4]}
-					/>,
-				),
+				messag.concat({
+					key: messageArr.key,
+					Text: messageArr.Text,
+					Time: messageArr.Time,
+					contentType: messageArr.contentType,
+					content: messageArr.content,
+				}),
 			);
 		}
 	}
@@ -235,7 +248,7 @@ export default function MessageForm(props) {
 					onDragOver={preventAndStop}
 					onDrop={handleDrop}>
 					<div className={styles.chat} ref={chatRef}>
-						{messag}
+						{renderMessages()}
 					</div>
 				</div>
 				<FormInput
