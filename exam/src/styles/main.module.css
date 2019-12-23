@@ -1,0 +1,57 @@
+.globalContainer {
+	width: 100vh;
+	height: 100vw;
+	display: flex;
+}
+
+.container {
+	background-color: #EEE;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.header {
+	flex: auto;
+	width: 100%;
+	background-color: #fdf;	
+	display: flex;
+	justify-content: center;
+	z-index: 1;
+}
+
+.logo {
+	font-size: 21px;
+	padding: 15px;
+}
+
+.citylist {
+	flex: auto;
+	width: 100%;
+	padding: 10px;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.plus {
+	position: absolute;
+	bottom: 30px;
+	right: 30px;
+	z-index: 1;
+	height: 100px;
+	width: 100px;
+	padding: 20px 25px;
+	border-radius: 100px;
+	color: #555;
+	background-color: #FCFF40;
+	font-size: 21px;
+	cursor: pointer;
+}
+
+.plus:active {
+	box-shadow: 0 0 20px 0 #555;
+}
+.plus:hover {
+	background-color: #FFF
+}

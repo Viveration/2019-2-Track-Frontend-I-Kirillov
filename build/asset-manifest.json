@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/2019-2-Track-Frontend-I-Kirillov/static/css/main.e997a62c.chunk.css",
+    "main.js": "/2019-2-Track-Frontend-I-Kirillov/static/js/main.cd047f03.chunk.js",
+    "main.js.map": "/2019-2-Track-Frontend-I-Kirillov/static/js/main.cd047f03.chunk.js.map",
+    "runtime-main.js": "/2019-2-Track-Frontend-I-Kirillov/static/js/runtime-main.f01410ec.js",
+    "runtime-main.js.map": "/2019-2-Track-Frontend-I-Kirillov/static/js/runtime-main.f01410ec.js.map",
+    "static/js/2.7214b06b.chunk.js": "/2019-2-Track-Frontend-I-Kirillov/static/js/2.7214b06b.chunk.js",
+    "static/js/2.7214b06b.chunk.js.map": "/2019-2-Track-Frontend-I-Kirillov/static/js/2.7214b06b.chunk.js.map",
+    "index.html": "/2019-2-Track-Frontend-I-Kirillov/index.html",
+    "precache-manifest.4501f91c85ee01767ddac957c503fd1e.js": "/2019-2-Track-Frontend-I-Kirillov/precache-manifest.4501f91c85ee01767ddac957c503fd1e.js",
+    "service-worker.js": "/2019-2-Track-Frontend-I-Kirillov/service-worker.js",
+    "static/css/main.e997a62c.chunk.css.map": "/2019-2-Track-Frontend-I-Kirillov/static/css/main.e997a62c.chunk.css.map",
+    "static/media/arrow.1e50d2aa.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/arrow.1e50d2aa.svg",
+    "static/media/chatlist.9468ea09.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/chatlist.9468ea09.svg",
+    "static/media/check.83009963.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/check.83009963.svg",
+    "static/media/create.7adbadcb.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/create.7adbadcb.svg",
+    "static/media/gear.664a36da.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/gear.664a36da.svg",
+    "static/media/geolocation.4c312a17.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/geolocation.4c312a17.svg",
+    "static/media/imgAttach.d7175ae9.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/imgAttach.d7175ae9.svg",
+    "static/media/microphoneOFF.96721915.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/microphoneOFF.96721915.svg",
+    "static/media/microphoneON.100d0669.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/microphoneON.100d0669.svg",
+    "static/media/profile.2568758d.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/profile.2568758d.svg",
+    "static/media/search.8c50bc51.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/search.8c50bc51.svg",
+    "static/media/sendMessage.0e3c5d62.svg": "/2019-2-Track-Frontend-I-Kirillov/static/media/sendMessage.0e3c5d62.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f01410ec.js",
+    "static/js/2.7214b06b.chunk.js",
+    "static/css/main.e997a62c.chunk.css",
+    "static/js/main.cd047f03.chunk.js"
+  ]
+}
