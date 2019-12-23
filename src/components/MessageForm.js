@@ -191,7 +191,7 @@ export default function MessageForm(props) {
 		if (type === 'audio') {
 			return { key: key, Text: value, Time: data, contentType: type, content: content };
 		}
-		if (type !== 'img') return { key: key, Text: value, Time: data, contentType: type };
+		if (type !== 'img') return { key: key, Text: value, Time: data, contentType: type, content: [] };
 		return { key: key, Text: value, Time: data, contentType: type, content: content };
 	}
 	function createRenderMessage(messageDict) {
@@ -216,32 +216,20 @@ export default function MessageForm(props) {
 	}
 
 	function addMessage(messageArr) {
-		if (Object.keys(messageArr).length === 4) {
-			setMessages(
-				messag.concat({
-					key: messageArr.key,
-					Text: messageArr.Text,
-					Time: messageArr.Time,
-					contentType: messageArr.contentType,
-					content: [],
-				}),
-			);
-		} else {
-			setMessages(
-				messag.concat({
-					key: messageArr.key,
-					Text: messageArr.Text,
-					Time: messageArr.Time,
-					contentType: messageArr.contentType,
-					content: messageArr.content,
-				}),
-			);
-		}
+		setMessages(
+			messag.concat({
+				key: messageArr.key,
+				Text: messageArr.Text,
+				Time: messageArr.Time,
+				contentType: messageArr.contentType,
+				content: messageArr.content,
+			}),
+		);
 	}
 
 	return (
 		<div className={styles.messageForm} style={display[props.isChatOpen]}>
-			<div className={styles.formChat} onSubmit={handleSubmit}>
+			<div className={styles.formChat}>
 				<div
 					className={styles.dropInput}
 					onDragEnter={preventAndStop}
